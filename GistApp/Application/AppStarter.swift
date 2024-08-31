@@ -1,20 +1,32 @@
 import UIKit
+import RouterKit
 
 final class AppStarter {
-    private static var window: UIWindow? = {
-        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-        let sceneDelegate = windowScene?.delegate as? SceneDelegate
-        return sceneDelegate?.window
-    }()
+    private let navigation = UINavigationController()
+    private let routingHub = RoutingHub.shared
 
-    static func start() {
-        startApp()
+    static var shared = AppStarter()
+
+    func start(window: UIWindow?) {
+        startApp(window: window)
+        setupRoutingHub(window: window)
     }
 
-    private static func startApp() {
+    private func startApp(window: UIWindow?) {
         let navigation = UINavigationController()
 
         window?.rootViewController = navigation
         window?.makeKeyAndVisible()
+    }
+
+    private func setupRoutingHub(window: UIWindow?) {
+        let descriptorsManager = DescriptorsManager(routingHub: routingHub)
+        descriptorsManager.setup()
+
+        window?.rootViewController = navigation
+
+        if let url = URL(string: "gist-app://list") {
+            routingHub.start(url: url, on: navigation)
+        }
     }
 }

@@ -13,6 +13,13 @@
 		4D1B89CD2C8372C300CC3F06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D1B89CB2C8372C300CC3F06 /* LaunchScreen.storyboard */; };
 		4D1B89D82C8372C300CC3F06 /* GistAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1B89D72C8372C300CC3F06 /* GistAppTests.swift */; };
 		4D1B89F32C83764000CC3F06 /* AppStarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1B89F22C83764000CC3F06 /* AppStarter.swift */; };
+		4D1B8A182C83C00200CC3F06 /* FavoritesKit in Resources */ = {isa = PBXBuildFile; fileRef = 4D1B8A142C83C00200CC3F06 /* FavoritesKit */; };
+		4D1B8A192C83C00200CC3F06 /* GistDetailKit in Resources */ = {isa = PBXBuildFile; fileRef = 4D1B8A152C83C00200CC3F06 /* GistDetailKit */; };
+		4D1B8A1A2C83C00200CC3F06 /* NetworkKit in Resources */ = {isa = PBXBuildFile; fileRef = 4D1B8A172C83C00200CC3F06 /* NetworkKit */; };
+		4D71DBDA2C83C17800F88D17 /* RouterKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4D71DBD92C83C17800F88D17 /* RouterKit */; };
+		4D71DBDF2C83C19000F88D17 /* DescriptorsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D71DBDC2C83C18F00F88D17 /* DescriptorsManager.swift */; };
+		4D71DBE02C83C19000F88D17 /* GistRouteDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D71DBDE2C83C18F00F88D17 /* GistRouteDescriptor.swift */; };
+		4D71DBE22C83C19C00F88D17 /* GistKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4D71DBE12C83C19C00F88D17 /* GistKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +42,14 @@
 		4D1B89D32C8372C300CC3F06 /* GistAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GistAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D1B89D72C8372C300CC3F06 /* GistAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistAppTests.swift; sourceTree = "<group>"; };
 		4D1B89F22C83764000CC3F06 /* AppStarter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStarter.swift; sourceTree = "<group>"; };
+		4D1B8A142C83C00200CC3F06 /* FavoritesKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = FavoritesKit; sourceTree = "<group>"; };
+		4D1B8A152C83C00200CC3F06 /* GistDetailKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GistDetailKit; sourceTree = "<group>"; };
+		4D1B8A172C83C00200CC3F06 /* NetworkKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkKit; sourceTree = "<group>"; };
+		4D71DBD72C83C16800F88D17 /* RouterKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RouterKit; sourceTree = "<group>"; };
+		4D71DBD82C83C16800F88D17 /* ComponentsKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ComponentsKit; sourceTree = "<group>"; };
+		4D71DBDC2C83C18F00F88D17 /* DescriptorsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptorsManager.swift; sourceTree = "<group>"; };
+		4D71DBDE2C83C18F00F88D17 /* GistRouteDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GistRouteDescriptor.swift; sourceTree = "<group>"; };
+		4DF2B7AB2C83C14000ACBBD7 /* GistKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GistKit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D71DBE22C83C19C00F88D17 /* GistKit in Frameworks */,
+				4D71DBDA2C83C17800F88D17 /* RouterKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +78,7 @@
 				4D1B89BF2C8372C200CC3F06 /* GistApp */,
 				4D1B89D62C8372C300CC3F06 /* GistAppTests */,
 				4D1B89BE2C8372C200CC3F06 /* Products */,
+				4D1B8A1B2C83C00D00CC3F06 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +94,7 @@
 		4D1B89BF2C8372C200CC3F06 /* GistApp */ = {
 			isa = PBXGroup;
 			children = (
+				4D1B8A122C83C00200CC3F06 /* Packages */,
 				4D1B89F12C83738200CC3F06 /* Application */,
 				4D1B89F02C83737500CC3F06 /* Resources */,
 			);
@@ -104,10 +123,65 @@
 			isa = PBXGroup;
 			children = (
 				4D1B89C02C8372C200CC3F06 /* AppDelegate.swift */,
-				4D1B89C22C8372C200CC3F06 /* SceneDelegate.swift */,
 				4D1B89F22C83764000CC3F06 /* AppStarter.swift */,
+				4D1B89C22C8372C200CC3F06 /* SceneDelegate.swift */,
+				4D71DBDB2C83C18F00F88D17 /* Navigation */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		4D1B8A122C83C00200CC3F06 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				4D1B8A132C83C00200CC3F06 /* Features */,
+				4D1B8A162C83C00200CC3F06 /* Foundation */,
+			);
+			name = Packages;
+			path = GistApp/Packages;
+			sourceTree = SOURCE_ROOT;
+		};
+		4D1B8A132C83C00200CC3F06 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				4DF2B7AB2C83C14000ACBBD7 /* GistKit */,
+				4D1B8A142C83C00200CC3F06 /* FavoritesKit */,
+				4D1B8A152C83C00200CC3F06 /* GistDetailKit */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		4D1B8A162C83C00200CC3F06 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				4D71DBD82C83C16800F88D17 /* ComponentsKit */,
+				4D71DBD72C83C16800F88D17 /* RouterKit */,
+				4D1B8A172C83C00200CC3F06 /* NetworkKit */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		4D1B8A1B2C83C00D00CC3F06 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4D71DBDB2C83C18F00F88D17 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				4D71DBDC2C83C18F00F88D17 /* DescriptorsManager.swift */,
+				4D71DBDD2C83C18F00F88D17 /* Routes */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		4D71DBDD2C83C18F00F88D17 /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				4D71DBDE2C83C18F00F88D17 /* GistRouteDescriptor.swift */,
+			);
+			path = Routes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +200,10 @@
 			dependencies = (
 			);
 			name = GistApp;
+			packageProductDependencies = (
+				4D71DBD92C83C17800F88D17 /* RouterKit */,
+				4D71DBE12C83C19C00F88D17 /* GistKit */,
+			);
 			productName = GistApp;
 			productReference = 4D1B89BD2C8372C200CC3F06 /* GistApp.app */;
 			productType = "com.apple.product-type.application";
@@ -192,7 +270,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D1B89CD2C8372C300CC3F06 /* LaunchScreen.storyboard in Resources */,
+				4D1B8A182C83C00200CC3F06 /* FavoritesKit in Resources */,
 				4D1B89CA2C8372C300CC3F06 /* Assets.xcassets in Resources */,
+				4D1B8A1A2C83C00200CC3F06 /* NetworkKit in Resources */,
+				4D1B8A192C83C00200CC3F06 /* GistDetailKit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,8 +291,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D71DBDF2C83C19000F88D17 /* DescriptorsManager.swift in Sources */,
 				4D1B89F32C83764000CC3F06 /* AppStarter.swift in Sources */,
 				4D1B89C12C8372C200CC3F06 /* AppDelegate.swift in Sources */,
+				4D71DBE02C83C19000F88D17 /* GistRouteDescriptor.swift in Sources */,
 				4D1B89C32C8372C200CC3F06 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,6 +569,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4D71DBD92C83C17800F88D17 /* RouterKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RouterKit;
+		};
+		4D71DBE12C83C19C00F88D17 /* GistKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GistKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4D1B89B52C8372C200CC3F06 /* Project object */;
 }
