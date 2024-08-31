@@ -9,13 +9,16 @@ let package = Package(
     products: [
         .library(
             name: "RouterKit",
-            targets: ["RouterKit"]),
+            targets: ["RouterKit"]
+        )
     ],
     targets: [
         .target(
-            name: "RouterKit"),
+            name: "RouterKit"
+        ),
         .testTarget(
             name: "RouterKitTests",
-            dependencies: ["RouterKit"]),
+            dependencies: ["RouterKit"]
+        )
     ]
 )

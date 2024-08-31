@@ -38,7 +38,7 @@ public final class DefaultItemView: UIView {
 
     // MARK: - Methods
 
-    public func setupData(title: String, subtitle: String) {
+    public func setupData(title: String?, subtitle: String?) {
         titleLabel.text = title
         subtitleLabel.text = subtitle
     }

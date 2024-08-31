@@ -25,7 +25,7 @@ final class AppStarter {
 
         window?.rootViewController = navigation
 
-        if let url = URL(string: "gist-app://list") {
+        if let url = URL(string: "gist-app://gists") {
             routingHub.start(url: url, on: navigation)
         }
     }

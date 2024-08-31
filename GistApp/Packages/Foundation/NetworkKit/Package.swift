@@ -5,11 +5,12 @@ import PackageDescription
 
 let package = Package(
     name: "NetworkKit",
+    platforms: [.iOS(.v15)],
     products: [
         .library(
             name: "NetworkKit",
             targets: ["NetworkKit"]
-        ),
+        )
     ],
     targets: [
         .target(
@@ -18,6 +19,6 @@ let package = Package(
         .testTarget(
             name: "NetworkKitTests",
             dependencies: ["NetworkKit"]
-        ),
+        )
     ]
 )

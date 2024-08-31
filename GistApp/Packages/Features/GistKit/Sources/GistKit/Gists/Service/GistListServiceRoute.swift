@@ -11,9 +11,16 @@ enum GistListServiceRoute: NetworkRouteProtocol {
     }
 
     private func setupFetchGistRequest(page: Int) -> RequestConfigProtocol {
+        let parameters = [
+            "page": page,
+            "per_page": 10
+        ]
         let config = RequestConfig(
-            path: "/gists/public?page=\(page)",
-            method: .get, debugMode: true
+            path: "/gists/public",
+            method: .get, 
+            encoding: .url,
+            parameters: parameters,
+            debugMode: true
         )
         return config
     }

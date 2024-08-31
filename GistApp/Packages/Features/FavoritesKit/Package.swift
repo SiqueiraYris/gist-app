@@ -9,13 +9,16 @@ let package = Package(
     products: [
         .library(
             name: "FavoritesKit",
-            targets: ["FavoritesKit"]),
+            targets: ["FavoritesKit"]
+        )
     ],
     targets: [
         .target(
-            name: "FavoritesKit"),
+            name: "FavoritesKit"
+        ),
         .testTarget(
             name: "FavoritesKitTests",
-            dependencies: ["FavoritesKit"]),
+            dependencies: ["FavoritesKit"]
+        )
     ]
 )

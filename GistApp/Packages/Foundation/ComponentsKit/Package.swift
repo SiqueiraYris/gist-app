@@ -10,7 +10,7 @@ let package = Package(
         .library(
             name: "ComponentsKit",
             targets: ["ComponentsKit"]
-        ),
+        )
     ],
     targets: [
         .target(
@@ -19,6 +19,6 @@ let package = Package(
         .testTarget(
             name: "ComponentsKitTests",
             dependencies: ["ComponentsKit"]
-        ),
+        )
     ]
 )

@@ -3,8 +3,7 @@ import UIKit
 public protocol RoutingHubProtocol {
     var descriptors: [RouteDescriptor] { get }
 
-    func start(url: URL)
-    func start(url: URL, on navigation: UINavigationController)
+    func start(url: URL, on navigation: UINavigationController?)
     func register(descriptor: RouteDescriptor)
 }
 
@@ -25,24 +24,7 @@ public final class RoutingHub: RoutingHubProtocol {
         descriptors.append(descriptor)
     }
 
-    public func start(url: URL) {
-        guard let descriptor = descriptors.first(where: { $0.match(url: url) }) else {
-            return
-        }
-
-        descriptor.start(url: url)
-    }
-
-    public func startOnRootNavigation(url: URL) {
-        guard let descriptor = descriptors.first(where: { $0.match(url: url) }) else {
-            return
-        }
-
-        guard let rootViewController = rootViewController else { return }
-        descriptor.start(url: url, on: rootViewController)
-    }
-
-    public func start(url: URL, on navigation: UINavigationController) {
+    public func start(url: URL, on navigation: UINavigationController?) {
         guard let descriptor = descriptors.first(where: { $0.match(url: url) }) else {
             return
         }

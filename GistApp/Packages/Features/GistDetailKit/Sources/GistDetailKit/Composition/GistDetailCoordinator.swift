@@ -1,10 +1,10 @@
 import UIKit
+import RouterKit
 
-protocol GistListCoordinatorProtocol {
-    func openFavorites()
+protocol GistDetailCoordinatorProtocol {
 }
 
-final class GistListCoordinator: GistListCoordinatorProtocol {
+final class GistDetailCoordinator: GistDetailCoordinatorProtocol {
     private weak var navigator: UINavigationController?
 
     init(navigator: UINavigationController?) {
@@ -13,9 +13,5 @@ final class GistListCoordinator: GistListCoordinatorProtocol {
 
     func start(viewController: UIViewController) {
         navigator?.pushViewController(viewController, animated: true)
-    }
-
-    func openFavorites() {
-        
     }
 }

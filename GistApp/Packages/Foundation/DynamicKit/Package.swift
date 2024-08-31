@@ -4,21 +4,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "GistDetailKit",
+    name: "DynamicKit",
     platforms: [.iOS(.v15)],
     products: [
         .library(
-            name: "GistDetailKit",
-            targets: ["GistDetailKit"]
+            name: "DynamicKit",
+            targets: ["DynamicKit"]
         )
     ],
     targets: [
         .target(
-            name: "GistDetailKit"
-        ),
+            name: "DynamicKit"),
         .testTarget(
-            name: "GistDetailKitTests",
-            dependencies: ["GistDetailKit"]
+            name: "DynamicKitTests",
+            dependencies: ["DynamicKit"]
         )
     ]
 )

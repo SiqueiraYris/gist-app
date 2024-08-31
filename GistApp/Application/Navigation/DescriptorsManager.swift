@@ -9,5 +9,7 @@ final class DescriptorsManager {
 
     func setup() {
         routingHub.register(descriptor: GistRouteDescriptor())
+        routingHub.register(descriptor: GistDetailRouteDescriptor())
+        routingHub.register(descriptor: FavoritesRouteDescriptor())
     }
 }
