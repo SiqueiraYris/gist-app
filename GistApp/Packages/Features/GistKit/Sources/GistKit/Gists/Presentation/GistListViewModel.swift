@@ -1,4 +1,5 @@
 import DynamicKit
+import ComponentsKit
 
 protocol GistListViewModelProtocol {
     var isLoading: Dynamic<Bool> { get }
@@ -8,7 +9,7 @@ protocol GistListViewModelProtocol {
     func fetch()
     func retryLastFetch()
     func numberOfRowsInSection(section: Int) -> Int
-    func cellForRowAt(row: Int) -> (title: String?, subtitle: String?)
+    func cellForRowAt(row: Int) -> DefaultItemData?
     func openFavorites()
 }
 
@@ -83,11 +84,14 @@ final class GistListViewModel: GistListViewModelProtocol {
         return gists.count
     }
 
-    func cellForRowAt(row: Int) -> (title: String?, subtitle: String?) {
-        guard row < gists.count else { return (title: nil, subtitle: nil) }
-        return (
-            title: Strings.userNameTitle.appending(gists[row].owner.userName),
-            subtitle: Strings.filesQuantityTitle.appending("\(gists[row].files.count)")
+    func cellForRowAt(row: Int) -> DefaultItemData? {
+        guard row < gists.count else { return nil }
+        let item = gists[row]
+
+        return DefaultItemData(
+            title: Strings.userNameTitle.appending(item.owner.userName),
+            subtitle: Strings.filesQuantityTitle.appending("\(item.files.count)"),
+            image: item.owner.avatarURL
         )
     }
 

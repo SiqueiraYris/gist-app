@@ -38,9 +38,13 @@ public final class DefaultItemView: UIView {
 
     // MARK: - Methods
 
-    public func setupData(title: String?, subtitle: String?) {
-        titleLabel.text = title
-        subtitleLabel.text = subtitle
+    public func setupData(data: DefaultItemData?) {
+        titleLabel.text = data?.title
+        subtitleLabel.text = data?.subtitle
+
+        if let url = data?.image, let imageURL = URL(string: url) {
+            avatar.download(from: imageURL)
+        }
     }
 
     private func setupViewStyle() {

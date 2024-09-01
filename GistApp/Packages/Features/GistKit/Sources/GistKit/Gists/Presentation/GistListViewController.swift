@@ -161,8 +161,7 @@ extension GistListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
 
-        let (title, subtitle) = viewModel.cellForRowAt(row: indexPath.row)
-        cell.setupData(title: title, subtitle: subtitle)
+        cell.setupData(data: viewModel.cellForRowAt(row: indexPath.row))
 
         return cell
     }

@@ -25,8 +25,8 @@ final class GistCell: UITableViewCell {
 
     // MARK: - Methods
 
-    func setupData(title: String?, subtitle: String?) {
-        itemView.setupData(title: title, subtitle: subtitle)
+    func setupData(data: DefaultItemData?) {
+        itemView.setupData(data: data)
     }
 
     private func setupViewStyle() {
