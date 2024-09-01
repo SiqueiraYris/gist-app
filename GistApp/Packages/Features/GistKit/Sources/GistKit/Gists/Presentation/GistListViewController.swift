@@ -13,6 +13,12 @@ final class GistListViewController: UIViewController {
         return tableView
     }()
 
+    private let refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = Colors.primaryLight
+        return refreshControl
+    }()
+
     private let loadingIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
         indicator.color = Colors.primaryLight
@@ -70,6 +76,8 @@ final class GistListViewController: UIViewController {
 
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
 
         setupViewHierarchy()
         setupViewConstraints()
@@ -121,6 +129,10 @@ final class GistListViewController: UIViewController {
             guard let self = self else { return }
             self.loadingIndicator.isHidden = !isLoading
             isLoading ? self.loadingIndicator.startAnimating() : self.loadingIndicator.stopAnimating()
+
+            if !isLoading {
+                self.refreshControl.endRefreshing()
+            }
         }
 
         viewModel.shouldReloadData.bind { [weak self] isLoading in
@@ -147,6 +159,11 @@ final class GistListViewController: UIViewController {
 
     @objc private func didTapFavoriteButton() {
         viewModel.openFavorites()
+    }
+
+    @objc private func didPullToRefresh() {
+        viewModel.resetPagination()
+        viewModel.fetch()
     }
 }
 

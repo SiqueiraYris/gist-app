@@ -8,6 +8,7 @@ protocol GistListViewModelProtocol {
 
     func fetch()
     func retryLastFetch()
+    func resetPagination()
     func numberOfRowsInSection(section: Int) -> Int
     func cellForRowAt(row: Int) -> DefaultItemData?
     func openFavorites()
@@ -78,6 +79,13 @@ final class GistListViewModel: GistListViewModelProtocol {
         if lastFetchFailed {
             fetch()
         }
+    }
+
+    func resetPagination() {
+        currentPage = 0
+        isLastPage = false
+        gists.removeAll()
+        shouldReloadData.value = true
     }
 
     func numberOfRowsInSection(section: Int) -> Int {
