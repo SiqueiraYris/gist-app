@@ -27,7 +27,7 @@ public final class ErrorStateView: UIView {
         let button = UIButton()
         button.backgroundColor = Colors.primary
         button.setTitleColor(Colors.gray_100, for: .normal)
-        button.layer.cornerRadius = 8
+        button.layer.cornerRadius = Border.CornerRadius.md
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -59,7 +59,7 @@ public final class ErrorStateView: UIView {
 
     private func setupViewStyle() {
         backgroundColor = Colors.gray_400
-        layer.cornerRadius = 8
+        layer.cornerRadius = Border.CornerRadius.md
 
         setupHierarchy()
         setupConstraints()

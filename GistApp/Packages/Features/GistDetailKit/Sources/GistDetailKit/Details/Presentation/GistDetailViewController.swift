@@ -19,8 +19,8 @@ final class GistDetailViewController: UIViewController {
 
     private let contentTextView: UITextView = {
         let textView = UITextView()
-        textView.layer.cornerRadius = 8
-        textView.layer.borderWidth = 1
+        textView.layer.cornerRadius = Border.CornerRadius.md
+        textView.layer.borderWidth = Border.Width.sm
         textView.layer.borderColor = Colors.gray_300.cgColor
         textView.font = .systemFont(ofSize: 16)
         textView.textColor = Colors.gray_100
@@ -82,7 +82,7 @@ final class GistDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setupBackButton(color: Colors.primaryLight)
+
         setupNavigation()
     }
 
@@ -131,6 +131,9 @@ final class GistDetailViewController: UIViewController {
     }
 
     private func setupNavigation() {
+        setupBackButton()
+        setupNavigationBar(prefersLargeTitles: false)
+
         let copyItem = UIBarButtonItem(
             image: UIImage(systemName: "doc.on.clipboard"),
             style: .plain,
@@ -148,20 +151,6 @@ final class GistDetailViewController: UIViewController {
         favoriteItem.tintColor = Colors.primaryLight
 
         navigationItem.rightBarButtonItems = [favoriteItem, copyItem]
-
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        appearance.backgroundColor = Colors.background
-        appearance.titleTextAttributes = [.foregroundColor: Colors.primaryLight]
-        appearance.largeTitleTextAttributes = [
-            .foregroundColor: Colors.primaryLight,
-            .font: UIFont.systemFont(ofSize: 24, weight: .bold)
-        ]
-
-        navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
 
     private func setupData() {
@@ -204,10 +193,16 @@ final class GistDetailViewController: UIViewController {
         }
     }
 
+    private func showToast() {
+        let toast = ToastView(text: Strings.toastTitle)
+        toast.show(in: view)
+    }
+
     // MARK: - Actions
 
     @objc private func copyContent() {
         viewModel.copyContent(text: contentTextView.text)
+        showToast()
     }
 
     @objc private func didTapFavoriteButton() {

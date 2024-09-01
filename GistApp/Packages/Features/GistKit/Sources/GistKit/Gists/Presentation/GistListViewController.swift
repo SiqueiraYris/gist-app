@@ -118,6 +118,8 @@ final class GistListViewController: UIViewController {
     }
 
     private func setupNavigation() {
+        setupNavigationBar(prefersLargeTitles: true)
+
         let buttonItem = UIBarButtonItem(
             image: UIImage(systemName: "heart"),
             style: .plain,
@@ -127,20 +129,6 @@ final class GistListViewController: UIViewController {
         buttonItem.tintColor = Colors.primaryLight
 
         navigationItem.rightBarButtonItem = buttonItem
-
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        appearance.backgroundColor = Colors.background
-        appearance.titleTextAttributes = [.foregroundColor: Colors.primaryLight]
-        appearance.largeTitleTextAttributes = [
-            .foregroundColor: Colors.primaryLight,
-            .font: UIFont.systemFont(ofSize: 24, weight: .bold)
-        ]
-
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
 
     private func setupBindings() {

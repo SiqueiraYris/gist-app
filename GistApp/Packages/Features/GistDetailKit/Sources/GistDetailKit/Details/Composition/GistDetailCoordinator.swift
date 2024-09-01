@@ -1,8 +1,7 @@
 import UIKit
 import RouterKit
 
-protocol GistDetailCoordinatorProtocol {
-}
+protocol GistDetailCoordinatorProtocol { }
 
 final class GistDetailCoordinator: GistDetailCoordinatorProtocol {
     private weak var navigator: UINavigationController?

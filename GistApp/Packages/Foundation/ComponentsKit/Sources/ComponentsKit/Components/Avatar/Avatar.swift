@@ -21,7 +21,7 @@ public final class Avatar: UIImageView {
 
         layer.cornerRadius = frame.width / 2
         layer.masksToBounds = true
-        layer.borderWidth = 1
+        layer.borderWidth = Border.Width.sm
         layer.borderColor = Colors.primaryLight.cgColor
     }
 

@@ -7,6 +7,7 @@ public struct Colors {
     public static let gray_300 = UIColor(hexString: "#252529")
     public static let gray_400 = UIColor(hexString: "#17171A")
     public static let primaryLight = UIColor(hexString: "#A881E6")
+    public static let primaryDark = UIColor(hexString: "#523480")
 
     public static let primary = UIColor(hexString: "#7450AC")
 }

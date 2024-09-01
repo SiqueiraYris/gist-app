@@ -49,7 +49,7 @@ public final class DefaultItemView: UIView {
 
     private func setupViewStyle() {
         backgroundColor = Colors.gray_400
-        layer.cornerRadius = 8
+        layer.cornerRadius = Border.CornerRadius.md
 
         setupViewHierarchy()
         setupViewConstraints()

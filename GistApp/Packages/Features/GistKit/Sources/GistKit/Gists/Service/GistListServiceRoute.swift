@@ -10,10 +10,15 @@ enum GistListServiceRoute: NetworkRouteProtocol {
         }
     }
 
+    private enum Constants {
+        static let selectedPage = "page"
+        static let quantityPerPage = "per_page"
+    }
+
     private func setupFetchGistRequest(page: Int) -> RequestConfigProtocol {
         let parameters = [
-            "page": page,
-            "per_page": 10
+            Constants.selectedPage: page,
+            Constants.quantityPerPage: 10
         ]
         let config = RequestConfig(
             path: "/gists/public",
