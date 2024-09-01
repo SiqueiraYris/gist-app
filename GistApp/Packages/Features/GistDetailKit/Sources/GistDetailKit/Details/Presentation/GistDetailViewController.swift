@@ -32,6 +32,7 @@ final class GistDetailViewController: UIViewController {
             bottom: Spacings.md,
             right: Spacings.md
         )
+        textView.indicatorStyle = .white
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
@@ -130,15 +131,23 @@ final class GistDetailViewController: UIViewController {
     }
 
     private func setupNavigation() {
-        let buttonItem = UIBarButtonItem(
+        let copyItem = UIBarButtonItem(
+            image: UIImage(systemName: "doc.on.clipboard"),
+            style: .plain,
+            target: self,
+            action: #selector(copyContent)
+        )
+        copyItem.tintColor = Colors.primaryLight
+
+        let favoriteItem = UIBarButtonItem(
             image: UIImage(systemName: "star"),
             style: .plain,
             target: self,
             action: #selector(didTapFavoriteButton)
         )
-        buttonItem.tintColor = Colors.primaryLight
+        favoriteItem.tintColor = Colors.primaryLight
 
-        navigationItem.rightBarButtonItem = buttonItem
+        navigationItem.rightBarButtonItems = [favoriteItem, copyItem]
 
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
