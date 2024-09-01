@@ -65,10 +65,10 @@ final class GistListViewModel: GistListViewModelProtocol {
             case let .failure(error):
                 if self.numberOfRowsInSection(section: 0) == 0 {
                     self.lastFetchFailed = true
-                    self.error.value = error.localizedDescription
+                    self.error.value = error.errorDescription
                 } else {
                     self.coordinator.showErrorAlert(
-                        with: error.localizedDescription
+                        with: error.errorDescription ?? error.localizedDescription
                     ) { [weak self] in
                         self?.retryLastFetch()
                     }
@@ -108,7 +108,8 @@ final class GistListViewModel: GistListViewModelProtocol {
         guard let item = gists[safe: row] else { return }
         let gist = GistItem(
             avatarURL: item.owner.avatarURL,
-            userName: item.owner.userName
+            userName: item.owner.userName,
+            fileURL: item.files.first?.value.fileURL
         )
         coordinator.openDetails(with: gist.toDictionary())
     }

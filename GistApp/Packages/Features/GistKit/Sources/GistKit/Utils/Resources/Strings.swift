@@ -5,4 +5,5 @@ struct Strings {
     static let errorTitle = "gist.error.title".localized
     static let errorRepeatButtonTitle = "gist.error.repeat.button.title".localized
     static let errorCloseButtonTitle = "gist.error.close.button.title".localized
+    static let errorFavoriteButtonTitle = "gist.error.favorite.button.title".localized
 }

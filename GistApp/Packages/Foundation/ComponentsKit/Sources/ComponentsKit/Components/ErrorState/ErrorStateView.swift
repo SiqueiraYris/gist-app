@@ -1,6 +1,6 @@
 import UIKit
 
-public final class EmptyStateView: UIView {
+public final class ErrorStateView: UIView {
     // MARK: - Views
 
     private let titleLabel: UILabel = {
@@ -27,7 +27,6 @@ public final class EmptyStateView: UIView {
         let button = UIButton()
         button.backgroundColor = Colors.primary
         button.setTitleColor(Colors.gray_100, for: .normal)
-        button.setTitle(Strings.errorButtonTitle, for: .normal)
         button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -48,8 +47,10 @@ public final class EmptyStateView: UIView {
 
     // MARK: - Methods
 
-    public func setup(message: String, action: @escaping () -> Void) {
+    public func setup(message: String, buttonText: String, action: @escaping () -> Void) {
         descriptionLabel.text = message
+        actionButton.setTitle(buttonText, for: .normal)
+
         actionButton.addAction(
             UIAction(handler: { _ in action() }),
             for: .touchUpInside

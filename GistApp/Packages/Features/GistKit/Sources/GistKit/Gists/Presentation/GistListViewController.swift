@@ -33,8 +33,8 @@ final class GistListViewController: UIViewController {
         return indicator
     }()
 
-    private let emptyStateView: EmptyStateView = {
-        let view = EmptyStateView()
+    private let errorStateView: ErrorStateView = {
+        let view = ErrorStateView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
         return view
@@ -92,7 +92,7 @@ final class GistListViewController: UIViewController {
     private func setupViewHierarchy() {
         view.addSubview(tableView)
         view.addSubview(loadingIndicator)
-        view.addSubview(emptyStateView)
+        view.addSubview(errorStateView)
     }
 
     private func setupViewConstraints() {
@@ -109,11 +109,11 @@ final class GistListViewController: UIViewController {
             loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 
-            emptyStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+            errorStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
                                                     constant: Spacings.lg),
-            emptyStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+            errorStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
                                                      constant: -Spacings.lg),
-            emptyStateView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            errorStateView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
 
@@ -162,14 +162,17 @@ final class GistListViewController: UIViewController {
             guard let self = self else { return }
 
             if let errorMessage = errorMessage {
-                self.showEmptyState(with: errorMessage)
+                self.showErrorState(with: errorMessage)
             }
         }
     }
 
-    private func showEmptyState(with message: String) {
-        emptyStateView.isHidden = false
-        emptyStateView.setup(message: message) { [weak self] in
+    private func showErrorState(with message: String) {
+        errorStateView.isHidden = false
+        errorStateView.setup(
+            message: message,
+            buttonText: Strings.errorFavoriteButtonTitle
+        ) { [weak self] in
             self?.viewModel.openFavorites()
         }
     }
