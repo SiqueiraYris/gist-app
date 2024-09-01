@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "FavoritesKit",
+    defaultLocalization: LanguageTag(stringLiteral: "pt"),
     platforms: [.iOS(.v15)],
     products: [
         .library(
@@ -12,9 +13,20 @@ let package = Package(
             targets: ["FavoritesKit"]
         )
     ],
+    dependencies: [
+        .package(path: "../Foundation/ComponentsKit"),
+        .package(path: "../Foundation/CommonKit"),
+    ],
     targets: [
         .target(
-            name: "FavoritesKit"
+            name: "FavoritesKit",
+            dependencies: [
+                "ComponentsKit",
+                "CommonKit",
+            ],
+            resources: [
+                .process("Utils/Resources/Strings/")
+            ]
         ),
         .testTarget(
             name: "FavoritesKitTests",

@@ -1,6 +1,6 @@
 import UIKit
 import RouterKit
-import GistDetailKit
+import FavoritesKit
 
 final class FavoritesRouteDescriptor: RouteDescriptor {
     init() {}
@@ -10,6 +10,6 @@ final class FavoritesRouteDescriptor: RouteDescriptor {
     }
 
     func start(url: URL, on navigator: UINavigationController?, with userInfo: [AnyHashable: Any]?) {
-        //        GistListComposer.startScene(navigator)
+        GistFavoritesComposer.startScene(navigator)
     }
 }
