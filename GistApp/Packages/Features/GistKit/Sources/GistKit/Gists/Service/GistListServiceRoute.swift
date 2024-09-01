@@ -19,8 +19,7 @@ enum GistListServiceRoute: NetworkRouteProtocol {
             path: "/gists/public",
             method: .get, 
             encoding: .url,
-            parameters: parameters,
-            debugMode: true
+            parameters: parameters
         )
         return config
     }

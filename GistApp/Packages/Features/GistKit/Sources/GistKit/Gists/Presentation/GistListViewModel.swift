@@ -3,8 +3,10 @@ import DynamicKit
 protocol GistListViewModelProtocol {
     var isLoading: Dynamic<Bool> { get }
     var shouldReloadData: Dynamic<Bool> { get }
+    var error: Dynamic<String?> { get }
 
     func fetch()
+    func retryLastFetch()
     func numberOfRowsInSection(section: Int) -> Int
     func cellForRowAt(row: Int) -> (title: String?, subtitle: String?)
     func openFavorites()
@@ -18,10 +20,12 @@ final class GistListViewModel: GistListViewModelProtocol {
     private var currentPage = 0
     private var isLastPage = false
     private var isFetching = false
+    private var lastFetchFailed = false
     private var gists: [GistItemResponse] = []
 
     var isLoading: Dynamic<Bool> = Dynamic(false)
     var shouldReloadData: Dynamic<Bool> = Dynamic(false)
+    var error: Dynamic<String?> = Dynamic(nil)
 
     // MARK: - Initializer
 
@@ -39,6 +43,7 @@ final class GistListViewModel: GistListViewModelProtocol {
         guard !isFetching && !isLastPage else { return }
         isLoading.value = currentPage == 0
         isFetching = true
+        lastFetchFailed = false
 
         let route = GistListServiceRoute.fetchGist(page: currentPage)
         service.fetch(route) { [weak self] result in
@@ -54,8 +59,23 @@ final class GistListViewModel: GistListViewModelProtocol {
                 self.shouldReloadData.value = true
 
             case let .failure(error):
-                print("Error fetching gists: \(error.localizedDescription)")
+                if self.numberOfRowsInSection(section: 0) == 0 {
+                    self.lastFetchFailed = true
+                    self.error.value = error.localizedDescription
+                } else {
+                    self.coordinator.showErrorAlert(
+                        with: error.localizedDescription
+                    ) { [weak self] in
+                        self?.retryLastFetch()
+                    }
+                }
             }
+        }
+    }
+
+    func retryLastFetch() {
+        if lastFetchFailed {
+            fetch()
         }
     }
 

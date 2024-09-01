@@ -27,6 +27,13 @@ final class GistListViewController: UIViewController {
         return indicator
     }()
 
+    private let emptyStateView: EmptyStateView = {
+        let view = EmptyStateView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
+        return view
+    }()
+
     // MARK: - Properties
 
     private let viewModel: GistListViewModelProtocol
@@ -72,6 +79,7 @@ final class GistListViewController: UIViewController {
     private func setupViewHierarchy() {
         view.addSubview(tableView)
         view.addSubview(loadingIndicator)
+        view.addSubview(emptyStateView)
     }
 
     private func setupViewConstraints() {
@@ -87,6 +95,12 @@ final class GistListViewController: UIViewController {
 
             loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+
+            emptyStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                                    constant: Spacings.lg),
+            emptyStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                                     constant: -Spacings.lg),
+            emptyStateView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
 
@@ -111,6 +125,21 @@ final class GistListViewController: UIViewController {
 
         viewModel.shouldReloadData.bind { [weak self] isLoading in
             self?.tableView.reloadData()
+        }
+
+        viewModel.error.bind { [weak self] errorMessage in
+            guard let self = self else { return }
+
+            if let errorMessage = errorMessage {
+                self.showEmptyState(with: errorMessage)
+            }
+        }
+    }
+
+    private func showEmptyState(with message: String) {
+        emptyStateView.isHidden = false
+        emptyStateView.setup(message: message) { [weak self] in
+            self?.viewModel.openFavorites()
         }
     }
 

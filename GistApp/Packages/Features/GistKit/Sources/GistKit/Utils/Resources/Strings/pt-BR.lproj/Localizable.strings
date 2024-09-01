@@ -1,3 +1,6 @@
 "gist.navigation.title" = "Gists";
 "gist.user.name.title" = "Usuário: ";
 "gist.files.quantity.title" = "Qt de arquivos: ";
+"gist.error.title" = "Ocorreu um erro";
+"gist.error.repeat.button.title" = "Repetir";
+"gist.error.close.button.title" = "Fechar";

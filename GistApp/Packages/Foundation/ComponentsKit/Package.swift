@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "ComponentsKit",
+    defaultLocalization: LanguageTag(stringLiteral: "pt"),
     platforms: [.iOS(.v15)],
     products: [
         .library(
@@ -14,7 +15,10 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "ComponentsKit"
+            name: "ComponentsKit",
+            resources: [
+                .process("Utils/Resources/Strings/")
+            ]
         ),
         .testTarget(
             name: "ComponentsKitTests",
