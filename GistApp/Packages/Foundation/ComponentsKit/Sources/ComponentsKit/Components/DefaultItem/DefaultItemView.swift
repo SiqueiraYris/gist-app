@@ -7,7 +7,7 @@ public final class DefaultItemView: UIView {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 14)
+        label.font = .boldSystemFont(ofSize: 18)
         label.textColor = Colors.gray_100
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -16,7 +16,7 @@ public final class DefaultItemView: UIView {
 
     private let subtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12)
+        label.font = .systemFont(ofSize: 14)
         label.textColor = Colors.gray_200
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -70,7 +70,7 @@ public final class DefaultItemView: UIView {
             avatar.centerYAnchor.constraint(equalTo: centerYAnchor),
 
             titleLabel.topAnchor.constraint(equalTo: topAnchor,
-                                            constant: Spacings.sm),
+                                            constant: Spacings.md),
             titleLabel.leadingAnchor.constraint(equalTo: avatar.trailingAnchor,
                                                 constant: Spacings.sm),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
@@ -83,7 +83,7 @@ public final class DefaultItemView: UIView {
             subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
                                                     constant: -Spacings.sm),
             subtitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor,
-                                                  constant: -Spacings.sm),
+                                                  constant: -Spacings.md),
         ])
     }
 }

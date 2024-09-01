@@ -12,9 +12,17 @@ let package = Package(
             targets: ["GistDetailKit"]
         )
     ],
+    dependencies: [
+        .package(path: "../Foundation/ComponentsKit"),
+        .package(path: "../Foundation/CommonKit"),
+    ],
     targets: [
         .target(
-            name: "GistDetailKit"
+            name: "GistDetailKit",
+            dependencies: [
+                "ComponentsKit",
+                "CommonKit"
+            ]
         ),
         .testTarget(
             name: "GistDetailKitTests",

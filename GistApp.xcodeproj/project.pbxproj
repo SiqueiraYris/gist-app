@@ -52,6 +52,7 @@
 		4D706A7A2C83CB0A0095DD64 /* GistDetailRouteDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistDetailRouteDescriptor.swift; sourceTree = "<group>"; };
 		4D706A7C2C83CB380095DD64 /* FavoritesRouteDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouteDescriptor.swift; sourceTree = "<group>"; };
 		4D706A7E2C83CBF70095DD64 /* DynamicKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DynamicKit; sourceTree = "<group>"; };
+		4D706A832C83FAD20095DD64 /* CommonKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CommonKit; sourceTree = "<group>"; };
 		4D71DBD72C83C16800F88D17 /* RouterKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RouterKit; sourceTree = "<group>"; };
 		4D71DBD82C83C16800F88D17 /* ComponentsKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ComponentsKit; sourceTree = "<group>"; };
 		4D71DBDC2C83C18F00F88D17 /* DescriptorsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptorsManager.swift; sourceTree = "<group>"; };
@@ -162,6 +163,7 @@
 		4D1B8A162C83C00200CC3F06 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				4D706A832C83FAD20095DD64 /* CommonKit */,
 				4D706A7E2C83CBF70095DD64 /* DynamicKit */,
 				4D71DBD82C83C16800F88D17 /* ComponentsKit */,
 				4D71DBD72C83C16800F88D17 /* RouterKit */,

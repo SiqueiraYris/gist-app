@@ -68,6 +68,12 @@ final class GistListViewController: UIViewController {
         viewModel.fetch()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        setupNavigation()
+    }
+
     // MARK: - Methods
 
     private func setupViewStyle() {
@@ -81,7 +87,6 @@ final class GistListViewController: UIViewController {
 
         setupViewHierarchy()
         setupViewConstraints()
-        setupNavigation()
     }
 
     private func setupViewHierarchy() {
@@ -122,6 +127,20 @@ final class GistListViewController: UIViewController {
         buttonItem.tintColor = Colors.primaryLight
 
         navigationItem.rightBarButtonItem = buttonItem
+
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = Colors.background
+        appearance.titleTextAttributes = [.foregroundColor: Colors.primaryLight]
+        appearance.largeTitleTextAttributes = [
+            .foregroundColor: Colors.primaryLight,
+            .font: UIFont.systemFont(ofSize: 24, weight: .bold)
+        ]
+
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
 
     private func setupBindings() {
@@ -191,6 +210,10 @@ extension GistListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension GistListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didSelectRowAt(row: indexPath.row)
+    }
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height

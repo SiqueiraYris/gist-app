@@ -9,7 +9,7 @@ final class FavoritesRouteDescriptor: RouteDescriptor {
         return url.host == "favorites"
     }
 
-    func start(url: URL, on navigator: UINavigationController?) {
+    func start(url: URL, on navigator: UINavigationController?, with userInfo: [AnyHashable: Any]?) {
         //        GistListComposer.startScene(navigator)
     }
 }

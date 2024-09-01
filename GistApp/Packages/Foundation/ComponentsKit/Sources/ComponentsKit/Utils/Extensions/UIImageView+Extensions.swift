@@ -1,6 +1,6 @@
 import UIKit
 
-extension UIImageView {
+public extension UIImageView {
     func download(from url: URL) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard

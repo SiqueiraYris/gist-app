@@ -9,7 +9,7 @@ final class GistRouteDescriptor: RouteDescriptor {
         return url.host == "gists"
     }
 
-    func start(url: URL, on navigator: UINavigationController?) {
+    func start(url: URL, on navigator: UINavigationController?, with userInfo: [AnyHashable: Any]?) {
         GistListComposer.startScene(navigator)
     }
 }

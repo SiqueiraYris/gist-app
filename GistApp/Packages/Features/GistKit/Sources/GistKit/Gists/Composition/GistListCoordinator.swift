@@ -3,6 +3,7 @@ import RouterKit
 
 protocol GistListCoordinatorProtocol {
     func openFavorites()
+    func openDetails(with data: [AnyHashable: Any]?)
     func showErrorAlert(with message: String, retryAction: @escaping () -> Void)
 }
 
@@ -23,6 +24,12 @@ final class GistListCoordinator: GistListCoordinatorProtocol {
         }
     }
 
+    func openDetails(with data: [AnyHashable: Any]?) {
+        if let url = URL(string: "gist-app://gist-detail") {
+            RoutingHub.shared.start(url: url, on: navigator, with: data)
+        }
+    }
+
     func showErrorAlert(with message: String, retryAction: @escaping () -> Void) {
         let alert = UIAlertController(
             title: Strings.errorTitle,
@@ -30,7 +37,8 @@ final class GistListCoordinator: GistListCoordinatorProtocol {
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(
-            title: Strings.errorRepeatButtonTitle, style: .default
+            title: Strings.errorRepeatButtonTitle, 
+            style: .default
         ) { _ in
             retryAction()
         })

@@ -1,4 +1,5 @@
 import DynamicKit
+import CommonKit
 import ComponentsKit
 
 protocol GistListViewModelProtocol {
@@ -11,6 +12,7 @@ protocol GistListViewModelProtocol {
     func resetPagination()
     func numberOfRowsInSection(section: Int) -> Int
     func cellForRowAt(row: Int) -> DefaultItemData?
+    func didSelectRowAt(row: Int)
     func openFavorites()
 }
 
@@ -93,14 +95,22 @@ final class GistListViewModel: GistListViewModelProtocol {
     }
 
     func cellForRowAt(row: Int) -> DefaultItemData? {
-        guard row < gists.count else { return nil }
-        let item = gists[row]
+        guard row < gists.count, let item = gists[safe: row] else { return nil }
 
         return DefaultItemData(
             title: Strings.userNameTitle.appending(item.owner.userName),
             subtitle: Strings.filesQuantityTitle.appending("\(item.files.count)"),
             image: item.owner.avatarURL
         )
+    }
+
+    func didSelectRowAt(row: Int) {
+        guard let item = gists[safe: row] else { return }
+        let gist = GistItem(
+            avatarURL: item.owner.avatarURL,
+            userName: item.owner.userName
+        )
+        coordinator.openDetails(with: gist.toDictionary())
     }
 
     func openFavorites() {

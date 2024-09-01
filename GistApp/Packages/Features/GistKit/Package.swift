@@ -17,6 +17,7 @@ let package = Package(
         .package(path: "../Foundation/ComponentsKit"),
         .package(path: "../Foundation/NetworkKit"),
         .package(path: "../Foundation/DynamicKit"),
+        .package(path: "../Foundation/CommonKit"),
         .package(path: "../Foundation/RouterKit")
     ],
     targets: [
@@ -26,6 +27,7 @@ let package = Package(
                 "ComponentsKit",
                 "NetworkKit",
                 "DynamicKit",
+                "CommonKit",
                 "RouterKit"
             ],
             resources: [
