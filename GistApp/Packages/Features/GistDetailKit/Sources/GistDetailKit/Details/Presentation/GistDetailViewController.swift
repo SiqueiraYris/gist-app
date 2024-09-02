@@ -105,7 +105,8 @@ final class GistDetailViewController: UIViewController {
             contentTextView.topAnchor.constraint(equalTo: cardView.bottomAnchor, constant: Spacings.md),
             contentTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Spacings.sm),
             contentTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Spacings.sm),
-            contentTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Spacings.xs),
+            contentTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                                                    constant: -Spacings.xs),
 
             loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),

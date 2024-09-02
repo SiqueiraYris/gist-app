@@ -121,7 +121,7 @@ final class GistListViewController: UIViewController {
         setupNavigationBar(prefersLargeTitles: true)
 
         let buttonItem = UIBarButtonItem(
-            image: UIImage(systemName: "heart.fill"),
+            title: Strings.favoritesButtonTitle,
             style: .plain,
             target: self,
             action: #selector(didTapFavoriteButton)
@@ -150,12 +150,12 @@ final class GistListViewController: UIViewController {
             guard let self = self else { return }
 
             if let errorMessage = errorMessage {
-                self.showErrorState(with: errorMessage)
+                self.showInformationState(with: errorMessage)
             }
         }
     }
 
-    private func showErrorState(with message: String) {
+    private func showInformationState(with message: String) {
         informationView.isHidden = false
         informationView.setup(
             title: Strings.errorTitle,

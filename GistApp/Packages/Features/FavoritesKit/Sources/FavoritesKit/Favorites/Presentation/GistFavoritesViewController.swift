@@ -47,6 +47,13 @@ final class GistFavoritesViewController: UIViewController {
         setupNavigation()
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        setupBindings()
+        viewModel.fetch()
+    }
+
     // MARK: - Methods
 
     private func setupViewStyle() {
@@ -86,6 +93,28 @@ final class GistFavoritesViewController: UIViewController {
     private func setupNavigation() {
         setupBackButton()
         setupNavigationBar(prefersLargeTitles: true)
+
+        let buttonItem = UIBarButtonItem(
+            title: Strings.clearFavoritesTitle,
+            style: .plain,
+            target: self,
+            action: #selector(didTapClearButton)
+        )
+        buttonItem.tintColor = Colors.primaryLight
+
+        navigationItem.rightBarButtonItem = buttonItem
+    }
+
+    private func setupBindings() {
+        viewModel.shouldReloadData.bind { [weak self] _ in
+            self?.tableView.reloadData()
+        }
+    }
+
+    // MARK: - Actions
+
+    @objc private func didTapClearButton() {
+        viewModel.clearFavorites()
     }
 }
 

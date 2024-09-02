@@ -1,5 +1,4 @@
 import UIKit
-import RouterKit
 
 protocol GistDetailCoordinatorProtocol {
     func showErrorAlert(with message: String, retryAction: @escaping () -> Void)

@@ -16,6 +16,7 @@ let package = Package(
     dependencies: [
         .package(path: "../Foundation/ComponentsKit"),
         .package(path: "../Foundation/CommonKit"),
+        .package(path: "../Foundation/StorageKit")
     ],
     targets: [
         .target(
@@ -23,6 +24,7 @@ let package = Package(
             dependencies: [
                 "ComponentsKit",
                 "CommonKit",
+                "StorageKit"
             ],
             resources: [
                 .process("Utils/Resources/Strings/")

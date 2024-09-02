@@ -124,4 +124,21 @@ final class CoreDataProvider {
             return .failure(error)
         }
     }
+
+    func fetchAll<T: NSManagedObject>(entity: T.Type) -> Result<[T], Error> {
+        let context = persistentContainer.viewContext
+        let entityName = String(describing: entity)
+
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+
+        do {
+            if let results = try context.fetch(fetchRequest) as? [T] {
+                return .success(results)
+            } else {
+                return .success([])
+            }
+        } catch {
+            return .failure(error)
+        }
+    }
 }

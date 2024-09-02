@@ -1,1 +1,4 @@
 "favorites.navigation.title" = "Favoritos";
+"favorites.user.name.title" = "Usuário: ";
+"favorites.files.quantity.title" = "Qt de arquivos: ";
+"favorites.clear.favorites.title" = "Limpar favoritos";

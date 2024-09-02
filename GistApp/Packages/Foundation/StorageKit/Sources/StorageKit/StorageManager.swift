@@ -6,6 +6,7 @@ public protocol StorageManagerProtocol {
     func delete<T: NSManagedObject>(key: String, entity: T.Type) -> Result<Void, Error>
     func load<T: NSManagedObject>(key: String, entity: T.Type) -> Result<Data?, Error>
     func clear<T: NSManagedObject>(entity: T.Type) -> Result<Void, Error>
+    func fetchAll<T: NSManagedObject>(entity: T.Type) -> Result<[T], Error>
 }
 
 public final class StorageManager: StorageManagerProtocol {
@@ -31,5 +32,9 @@ public final class StorageManager: StorageManagerProtocol {
 
     public func clear<T: NSManagedObject>(entity: T.Type) -> Result<Void, Error> {
         return coreDataProvider.clear(entity: entity)
+    }
+
+    public func fetchAll<T: NSManagedObject>(entity: T.Type) -> Result<[T], Error> {
+        return coreDataProvider.fetchAll(entity: entity)
     }
 }
