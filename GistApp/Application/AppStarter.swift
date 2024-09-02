@@ -1,5 +1,6 @@
 import UIKit
 import RouterKit
+import StorageKit
 
 final class AppStarter {
     private let navigation = UINavigationController()
@@ -24,6 +25,8 @@ final class AppStarter {
         descriptorsManager.setup()
 
         window?.rootViewController = navigation
+
+        _ = StorageManager.shared
 
         if let url = URL(string: "gist-app://gists") {
             routingHub.start(url: url, on: navigation)

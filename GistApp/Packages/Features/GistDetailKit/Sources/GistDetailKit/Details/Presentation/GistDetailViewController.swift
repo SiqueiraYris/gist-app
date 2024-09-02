@@ -44,8 +44,8 @@ final class GistDetailViewController: UIViewController {
         return indicator
     }()
 
-    private let errorStateView: ErrorStateView = {
-        let view = ErrorStateView()
+    private let informationView: InformationStateView = {
+        let view = InformationStateView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
         return view
@@ -101,7 +101,7 @@ final class GistDetailViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(contentTextView)
         view.addSubview(loadingIndicator)
-        view.addSubview(errorStateView)
+        view.addSubview(informationView)
     }
 
     private func setupViewConstraints() {
@@ -121,11 +121,11 @@ final class GistDetailViewController: UIViewController {
             loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 
-            errorStateView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Spacings.xl),
-            errorStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                    constant: Spacings.lg),
-            errorStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                                     constant: -Spacings.lg)
+            informationView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Spacings.xl),
+            informationView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                                     constant: Spacings.lg),
+            informationView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                                      constant: -Spacings.lg)
         ])
     }
 
@@ -181,13 +181,14 @@ final class GistDetailViewController: UIViewController {
     }
 
     private func showErrorState(with message: String) {
-        errorStateView.isHidden = false
+        informationView.isHidden = false
         contentTextView.isHidden = true
-        errorStateView.setup(
-            message: message,
+        informationView.setup(
+            title: Strings.informationTitle,
+            subtitle: message,
             buttonText: Strings.tryAgainButtonTitle
         ) { [weak self] in
-            self?.errorStateView.isHidden = true
+            self?.informationView.isHidden = true
             self?.viewModel.fetch()
         }
     }

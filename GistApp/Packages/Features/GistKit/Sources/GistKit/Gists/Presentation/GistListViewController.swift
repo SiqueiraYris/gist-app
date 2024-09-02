@@ -6,7 +6,7 @@ final class GistListViewController: UIViewController {
 
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(GistCell.self, forCellReuseIdentifier: GistCell.reuseIdentifier)
+        tableView.register(DefaultItemCell.self, forCellReuseIdentifier: DefaultItemCell.reuseIdentifier)
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -33,8 +33,8 @@ final class GistListViewController: UIViewController {
         return indicator
     }()
 
-    private let errorStateView: ErrorStateView = {
-        let view = ErrorStateView()
+    private let informationView: InformationStateView = {
+        let view = InformationStateView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
         return view
@@ -92,7 +92,7 @@ final class GistListViewController: UIViewController {
     private func setupViewHierarchy() {
         view.addSubview(tableView)
         view.addSubview(loadingIndicator)
-        view.addSubview(errorStateView)
+        view.addSubview(informationView)
     }
 
     private func setupViewConstraints() {
@@ -109,11 +109,11 @@ final class GistListViewController: UIViewController {
             loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 
-            errorStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+            informationView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
                                                     constant: Spacings.lg),
-            errorStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+            informationView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
                                                      constant: -Spacings.lg),
-            errorStateView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            informationView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
 
@@ -121,7 +121,7 @@ final class GistListViewController: UIViewController {
         setupNavigationBar(prefersLargeTitles: true)
 
         let buttonItem = UIBarButtonItem(
-            image: UIImage(systemName: "heart"),
+            image: UIImage(systemName: "heart.fill"),
             style: .plain,
             target: self,
             action: #selector(didTapFavoriteButton)
@@ -156,9 +156,10 @@ final class GistListViewController: UIViewController {
     }
 
     private func showErrorState(with message: String) {
-        errorStateView.isHidden = false
-        errorStateView.setup(
-            message: message,
+        informationView.isHidden = false
+        informationView.setup(
+            title: Strings.errorTitle,
+            subtitle: message,
             buttonText: Strings.errorFavoriteButtonTitle
         ) { [weak self] in
             self?.viewModel.openFavorites()
@@ -182,9 +183,9 @@ final class GistListViewController: UIViewController {
 extension GistListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: GistCell.reuseIdentifier,
+            withIdentifier: DefaultItemCell.reuseIdentifier,
             for: indexPath
-        ) as? GistCell else {
+        ) as? DefaultItemCell else {
             return UITableViewCell()
         }
 

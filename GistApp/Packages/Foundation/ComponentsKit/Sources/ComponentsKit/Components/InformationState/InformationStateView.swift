@@ -1,11 +1,10 @@
 import UIKit
 
-public final class ErrorStateView: UIView {
+public final class InformationStateView: UIView {
     // MARK: - Views
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = Strings.errorTitle
         label.textAlignment = .center
         label.textColor = Colors.gray_100
         label.font = .boldSystemFont(ofSize: 18)
@@ -47,8 +46,14 @@ public final class ErrorStateView: UIView {
 
     // MARK: - Methods
 
-    public func setup(message: String, buttonText: String, action: @escaping () -> Void) {
-        descriptionLabel.text = message
+    public func setup(
+        title: String,
+        subtitle: String,
+        buttonText: String,
+        action: @escaping () -> Void
+    ) {
+        titleLabel.text = title
+        descriptionLabel.text = subtitle
         actionButton.setTitle(buttonText, for: .normal)
 
         actionButton.addAction(

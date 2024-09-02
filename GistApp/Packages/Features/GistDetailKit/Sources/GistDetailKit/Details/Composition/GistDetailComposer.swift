@@ -1,6 +1,7 @@
 import UIKit
 import CommonKit
 import NetworkKit
+import StorageKit
 
 public struct GistDetailComposer {
     public static func startScene(
@@ -9,10 +10,12 @@ public struct GistDetailComposer {
     ) {
         guard let dataSource = data?.toModel(GistDetailDataSource.self) else { return }
         let coordinator = GistDetailCoordinator(navigator: navigator)
+        let storageProvider = GistDetailStorageProvider(storageManager: StorageManager.shared)
         let service = GistDetailService(manager: NetworkManager.shared)
         let viewModel = GistDetailViewModel(
             coordinator: coordinator,
             service: service,
+            storageProvider: storageProvider,
             dataSource: dataSource
         )
         let viewController = GistDetailViewController(viewModel: viewModel)

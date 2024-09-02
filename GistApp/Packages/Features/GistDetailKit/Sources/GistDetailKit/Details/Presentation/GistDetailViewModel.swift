@@ -5,6 +5,7 @@ protocol GistDetailViewModelProtocol {
     var isLoading: Dynamic<Bool> { get }
     var error: Dynamic<String?> { get }
     var content: Dynamic<String?> { get }
+    var isFavorited: Dynamic<Bool> { get }
 
     func fetch()
     func getUserName() -> String?
@@ -14,21 +15,29 @@ protocol GistDetailViewModelProtocol {
 }
 
 final class GistDetailViewModel: GistDetailViewModelProtocol {
+    // MARK: - Properties
+    
     private let coordinator: GistDetailCoordinatorProtocol
     private let service: GistDetailServiceProtocol
+    private let storageProvider: GistDetailStorageProviderProtocol
     private let dataSource: GistDetailDataSource
 
     var isLoading: Dynamic<Bool> = Dynamic(false)
     var error: Dynamic<String?> = Dynamic(nil)
     var content: Dynamic<String?> = Dynamic(nil)
+    var isFavorited: Dynamic<Bool> = Dynamic(false)
 
+    // MARK: - Initializer
+    
     init(
         coordinator: GistDetailCoordinatorProtocol,
         service: GistDetailServiceProtocol,
+        storageProvider: GistDetailStorageProviderProtocol,
         dataSource: GistDetailDataSource
     ) {
         self.coordinator = coordinator
         self.service = service
+        self.storageProvider = storageProvider
         self.dataSource = dataSource
     }
 
@@ -72,5 +81,13 @@ final class GistDetailViewModel: GistDetailViewModelProtocol {
     func favoriteItem() {
         // TODO: - Save in core data
         // TODO: - Change icon when it's saved
+        let hasSaved = storageProvider.saveData(
+            id: dataSource.id,
+            userName: dataSource.userName,
+            avatarURL: dataSource.avatarURL,
+            filename: dataSource.filename,
+            gistContent: content.value
+        )
+        print("aqui salvou? \(hasSaved)")
     }
 }

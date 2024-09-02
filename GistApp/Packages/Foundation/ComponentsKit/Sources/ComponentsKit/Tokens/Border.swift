@@ -10,6 +10,6 @@ public struct Border {
         /// `$sm` - `4px`
         public static let sm = CGFloat(4)
         /// `$md` - `8px`
-        public static let md = CGFloat(4)
+        public static let md = CGFloat(8)
     }
 }

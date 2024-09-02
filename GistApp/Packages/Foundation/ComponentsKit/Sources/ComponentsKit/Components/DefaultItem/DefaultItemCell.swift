@@ -1,14 +1,13 @@
 import UIKit
-import ComponentsKit
 
-final class GistCell: UITableViewCell {
+public final class DefaultItemCell: UITableViewCell {
     // MARK: - Views
 
     private let itemView = DefaultItemView()
 
     // MARK: - Properties
 
-    static let reuseIdentifier = "GistCell"
+    public static let reuseIdentifier = "DefaultItemCell"
 
     // MARK: - Initializer
 
@@ -25,7 +24,7 @@ final class GistCell: UITableViewCell {
 
     // MARK: - Methods
 
-    func setupData(data: DefaultItemData?) {
+    public func setupData(data: DefaultItemData?) {
         itemView.setupData(data: data)
     }
 

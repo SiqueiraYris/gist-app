@@ -107,8 +107,10 @@ final class GistListViewModel: GistListViewModelProtocol {
     func didSelectRowAt(row: Int) {
         guard let item = gists[safe: row] else { return }
         let gist = GistItem(
+            id: item.id,
             avatarURL: item.owner.avatarURL,
             userName: item.owner.userName,
+            filename: item.files.first?.value.filename,
             fileURL: item.files.first?.value.fileURL
         )
         coordinator.openDetails(with: gist.toDictionary())
