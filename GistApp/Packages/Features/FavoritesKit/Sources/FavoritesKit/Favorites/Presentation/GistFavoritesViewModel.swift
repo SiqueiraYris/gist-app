@@ -5,6 +5,7 @@ import ComponentsKit
 protocol GistFavoritesViewModelProtocol {
     var shouldReloadData: Dynamic<Bool> { get }
     var showInformationState: Dynamic<Bool> { get }
+    var showToast: Dynamic<Bool> { get }
     var error: Dynamic<String?> { get }
 
     func fetch()
@@ -22,6 +23,7 @@ final class GistFavoritesViewModel: GistFavoritesViewModelProtocol {
 
     var shouldReloadData: Dynamic<Bool> = Dynamic(false)
     var showInformationState: Dynamic<Bool> = Dynamic(false)
+    var showToast: Dynamic<Bool> = Dynamic(false)
     var error: Dynamic<String?> = Dynamic(nil)
 
     // MARK: - Initializer
@@ -61,10 +63,18 @@ final class GistFavoritesViewModel: GistFavoritesViewModelProtocol {
     }
 
     func clearFavorites() {
+        coordinator.showClearConfirmationAlert { [weak self] confirmed in
+            guard let self = self, confirmed else { return }
+            self.clear()
+        }
+    }
+
+    private func clear() {
         let hasSuccess = storage.clear()
 
         if hasSuccess {
             fetch()
+            showToast.value = true
         } else {
             coordinator.showErrorAlert(with: Strings.clearErrorMessage) { [weak self] in
                 self?.clearFavorites()

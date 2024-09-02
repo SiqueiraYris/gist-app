@@ -7,6 +7,8 @@ final class GistDetailViewController: UIViewController {
 
     private let cardView = DefaultItemView()
 
+    private let titleView = TitleView()
+
     private let contentTextView: UITextView = {
         let textView = UITextView()
         textView.layer.cornerRadius = Border.CornerRadius.md
@@ -91,6 +93,7 @@ final class GistDetailViewController: UIViewController {
 
     private func setupViewHierarchy() {
         view.addSubview(cardView)
+        view.addSubview(titleView)
         view.addSubview(contentTextView)
         view.addSubview(loadingIndicator)
         view.addSubview(informationView)
@@ -102,7 +105,11 @@ final class GistDetailViewController: UIViewController {
             cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Spacings.sm),
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Spacings.sm),
 
-            contentTextView.topAnchor.constraint(equalTo: cardView.bottomAnchor, constant: Spacings.md),
+            titleView.topAnchor.constraint(equalTo: cardView.bottomAnchor, constant: Spacings.md),
+            titleView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Spacings.sm),
+            titleView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Spacings.sm),
+
+            contentTextView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: Spacings.md),
             contentTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Spacings.sm),
             contentTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Spacings.sm),
             contentTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
@@ -147,6 +154,7 @@ final class GistDetailViewController: UIViewController {
     }
 
     private func setupData() {
+        titleView.setupData(title: viewModel.getTitleData())
         cardView.setupData(data: viewModel.getData())
     }
 
@@ -191,7 +199,7 @@ final class GistDetailViewController: UIViewController {
     }
 
     private func showToast() {
-        let toast = ToastView(text: Strings.toastTitle)
+        let toast = ToastView(text: Strings.copyToastTitle)
         toast.show(in: view)
     }
 

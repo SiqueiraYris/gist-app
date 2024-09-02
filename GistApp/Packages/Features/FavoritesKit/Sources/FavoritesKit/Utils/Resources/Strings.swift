@@ -9,4 +9,9 @@ struct Strings {
     static let clearErrorMessage = "favorites.clear.error.message".localized
     static let tryAgainButtonTitle = "favorites.error.try.again.button.title".localized
     static let loadErrorMessage = "favorites.load.error.message".localized
+    static let deleteToastText = "favorites.delete.toast.text".localized
+    static let clearConfirmationTitle = "favorites.clear.confirmation.title".localized
+    static let clearConfirmationMessage = "favorites.clear.confirmation.message".localized
+    static let clearConfirmationButtonTitle = "favorites.clear.confirmation.button.title".localized
+    static let clearCancelButtonTitle = "favorites.clear.cancel..button.title".localized
 }

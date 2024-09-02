@@ -10,8 +10,7 @@ protocol GistDetailViewModelProtocol {
 
     func fetch()
     func getData() -> DefaultItemData?
-    func getUserName() -> String?
-    func getAvatar() -> String?
+    func getTitleData() -> String?
     func copyContent(text: String?)
     func favoriteItem()
     func getIcon() -> String
@@ -70,20 +69,16 @@ final class GistDetailViewModel: GistDetailViewModelProtocol {
         }
     }
 
-    func getUserName() -> String? {
-        return dataSource.userName
-    }
-
-    func getAvatar() -> String? {
-        return dataSource.avatarURL
-    }
-
     func getData() -> DefaultItemData? {
         return DefaultItemData(
             title: Strings.userNameTitle.appending(dataSource.userName ?? ""),
             subtitle: Strings.filesQuantityTitle.appending("\(dataSource.filesQuantity)"),
             image: dataSource.avatarURL
         )
+    }
+
+    func getTitleData() -> String? {
+        return Strings.fileTitle.appending(dataSource.filename ?? "")
     }
 
     func copyContent(text: String?) {

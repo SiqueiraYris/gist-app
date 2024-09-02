@@ -8,3 +8,8 @@
 "favorites.clear.error.message" = "Não foi possível limpar os favoritos.";
 "favorites.error.try.again.button.title" = "Tentar novamente";
 "favorites.load.error.message" = "Não foi possível carregar os favoritos.";
+"favorites.delete.toast.text" = "Favoritos excluídos";
+"favorites.clear.confirmation.title" = "Confirmação";
+"favorites.clear.confirmation.message" = "Você tem certeza de que deseja limpar todos os favoritos?";
+"favorites.clear.confirmation.button.title" = "Limpar";
+"favorites.clear.cancel..button.title" = "Cancelar";

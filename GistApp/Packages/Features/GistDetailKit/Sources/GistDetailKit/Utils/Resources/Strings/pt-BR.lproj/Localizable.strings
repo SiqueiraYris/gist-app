@@ -1,6 +1,6 @@
-"detail.navigation.title" = "Arquivo";
+"detail.navigation.title" = "Gist";
 "detail.error.try.again.button.title" = "Tentar novamente";
-"detail.toast.title" = "Gist copiado!";
+"detail.copy.toast.title" = "Gist copiado!";
 "detail.information.view.title" = "Ocorreu um erro";
 "detail.error.title" = "Ocorreu um erro";
 "detail.error.repeat.button.title" = "Repetir";
@@ -8,3 +8,4 @@
 "detail.error.generic.message" = "Não foi possível salvar os dados neste momento.";
 "detail.user.name.title" = "Usuário: ";
 "detail.files.quantity.title" = "Qt de arquivos: ";
+"detail.file.title" = "Arquivo: ";

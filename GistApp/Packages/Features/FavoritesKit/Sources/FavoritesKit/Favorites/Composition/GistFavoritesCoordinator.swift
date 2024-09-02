@@ -3,6 +3,7 @@ import RouterKit
 
 protocol GistFavoritesCoordinatorProtocol {
     func showErrorAlert(with message: String, retryAction: @escaping () -> Void)
+    func showClearConfirmationAlert(completion: @escaping (Bool) -> Void)
 }
 
 final class GistFavoritesCoordinator: GistFavoritesCoordinatorProtocol {
@@ -32,6 +33,30 @@ final class GistFavoritesCoordinator: GistFavoritesCoordinatorProtocol {
             title: Strings.errorCloseButtonTitle,
             style: .cancel
         ))
+
+        navigator?.present(alert, animated: true, completion: nil)
+    }
+
+    func showClearConfirmationAlert(completion: @escaping (Bool) -> Void) {
+        let alert = UIAlertController(
+            title: Strings.clearConfirmationTitle,
+            message: Strings.clearConfirmationMessage,
+            preferredStyle: .alert
+        )
+
+        alert.addAction(UIAlertAction(
+            title: Strings.clearConfirmationButtonTitle,
+            style: .destructive
+        ) { _ in
+            completion(true)
+        })
+
+        alert.addAction(UIAlertAction(
+            title: Strings.clearCancelButtonTitle,
+            style: .cancel
+        ) { _ in
+            completion(false)
+        })
 
         navigator?.present(alert, animated: true, completion: nil)
     }

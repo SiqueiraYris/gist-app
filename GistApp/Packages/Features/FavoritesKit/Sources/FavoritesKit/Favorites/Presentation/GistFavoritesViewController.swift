@@ -117,6 +117,10 @@ final class GistFavoritesViewController: UIViewController {
                 self.showInformationState(with: errorMessage)
             }
         }
+
+        viewModel.showToast.bind { [weak self] _ in
+            self?.showToast()
+        }
     }
 
     private func showInformationState(with message: String) {
@@ -128,6 +132,11 @@ final class GistFavoritesViewController: UIViewController {
         ) { [weak self] in
             self?.viewModel.fetch()
         }
+    }
+
+    private func showToast() {
+        let toast = ToastView(text: Strings.deleteToastText)
+        toast.show(in: view)
     }
 
     // MARK: - Actions
