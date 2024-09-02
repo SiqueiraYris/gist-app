@@ -4,6 +4,7 @@ import RouterKit
 protocol GistFavoritesCoordinatorProtocol {
     func showErrorAlert(with message: String, retryAction: @escaping () -> Void)
     func showClearConfirmationAlert(completion: @escaping (Bool) -> Void)
+    func back()
 }
 
 final class GistFavoritesCoordinator: GistFavoritesCoordinatorProtocol {
@@ -59,5 +60,9 @@ final class GistFavoritesCoordinator: GistFavoritesCoordinatorProtocol {
         })
 
         navigator?.present(alert, animated: true, completion: nil)
+    }
+
+    func back() {
+        navigator?.popViewController(animated: true)
     }
 }

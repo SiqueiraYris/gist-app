@@ -13,5 +13,8 @@ struct Strings {
     static let clearConfirmationTitle = "favorites.clear.confirmation.title".localized
     static let clearConfirmationMessage = "favorites.clear.confirmation.message".localized
     static let clearConfirmationButtonTitle = "favorites.clear.confirmation.button.title".localized
-    static let clearCancelButtonTitle = "favorites.clear.cancel..button.title".localized
+    static let clearCancelButtonTitle = "favorites.clear.cancel.button.title".localized
+    static let emptyTitle = "favorites.empty.title".localized
+    static let emptyMessage = "favorites.empty.message".localized
+    static let emptyButtonTitle = "favorites.empty.button.title".localized
 }

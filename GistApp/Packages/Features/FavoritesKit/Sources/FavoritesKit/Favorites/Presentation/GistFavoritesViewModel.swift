@@ -6,11 +6,13 @@ protocol GistFavoritesViewModelProtocol {
     var shouldReloadData: Dynamic<Bool> { get }
     var showInformationState: Dynamic<Bool> { get }
     var showToast: Dynamic<Bool> { get }
+    var showEmptyState: Dynamic<Bool> { get }
     var error: Dynamic<String?> { get }
 
     func fetch()
     func numberOfRowsInSection(section: Int) -> Int
     func cellForRowAt(row: Int) -> DefaultItemData?
+    func back()
     func clearFavorites()
 }
 
@@ -24,6 +26,7 @@ final class GistFavoritesViewModel: GistFavoritesViewModelProtocol {
     var shouldReloadData: Dynamic<Bool> = Dynamic(false)
     var showInformationState: Dynamic<Bool> = Dynamic(false)
     var showToast: Dynamic<Bool> = Dynamic(false)
+    var showEmptyState: Dynamic<Bool> = Dynamic(false)
     var error: Dynamic<String?> = Dynamic(nil)
 
     // MARK: - Initializer
@@ -44,6 +47,10 @@ final class GistFavoritesViewModel: GistFavoritesViewModelProtocol {
             items = data
             shouldReloadData.value = true
 
+            if items.isEmpty {
+                showInformationState.value = true
+            }
+
         case .failure:
             error.value = Strings.loadErrorMessage
         }
@@ -60,6 +67,10 @@ final class GistFavoritesViewModel: GistFavoritesViewModelProtocol {
             subtitle: Strings.filesQuantityTitle.appending("\(item?.filesQuantity ?? 0)"),
             image: ""
         )
+    }
+
+    func back() {
+        coordinator.back()
     }
 
     func clearFavorites() {

@@ -121,6 +121,10 @@ final class GistFavoritesViewController: UIViewController {
         viewModel.showToast.bind { [weak self] _ in
             self?.showToast()
         }
+
+        viewModel.showInformationState.bind { [weak self] _ in
+            self?.showEmptyState()
+        }
     }
 
     private func showInformationState(with message: String) {
@@ -131,6 +135,17 @@ final class GistFavoritesViewController: UIViewController {
             buttonText: Strings.tryAgainButtonTitle
         ) { [weak self] in
             self?.viewModel.fetch()
+        }
+    }
+
+    private func showEmptyState() {
+        informationView.isHidden = false
+        informationView.setup(
+            title: Strings.emptyTitle,
+            subtitle: Strings.emptyMessage,
+            buttonText: Strings.emptyButtonTitle
+        ) { [weak self] in
+            self?.viewModel.back()
         }
     }
 

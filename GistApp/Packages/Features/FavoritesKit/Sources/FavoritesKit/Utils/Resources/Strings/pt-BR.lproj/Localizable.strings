@@ -12,4 +12,7 @@
 "favorites.clear.confirmation.title" = "Confirmação";
 "favorites.clear.confirmation.message" = "Você tem certeza de que deseja limpar todos os favoritos?";
 "favorites.clear.confirmation.button.title" = "Limpar";
-"favorites.clear.cancel..button.title" = "Cancelar";
+"favorites.clear.cancel.button.title" = "Cancelar";
+"favorites.empty.title" = "Nada por aqui";
+"favorites.empty.message" = "Não foram encontrados favoritos.";
+"favorites.empty.button.title" = "Voltar";
