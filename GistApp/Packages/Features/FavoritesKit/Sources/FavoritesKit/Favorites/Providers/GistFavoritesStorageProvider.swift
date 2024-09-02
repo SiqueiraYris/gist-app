@@ -1,4 +1,5 @@
 import StorageKit
+import Foundation
 
 protocol GistFavoritesStorageProviderProtocol { 
     func fetchAllGists() -> Result<[GistFavoritesDataSource], Error>
@@ -19,6 +20,7 @@ final class GistFavoritesStorageProvider: GistFavoritesStorageProviderProtocol {
     // MARK: - Methods
 
     func fetchAllGists() -> Result<[GistFavoritesDataSource], Error> {
+//        return .failure(NSError(domain: "", code: 1))
         let result = storageManager.fetchAll(entity: GistModel.self)
 
         switch result {

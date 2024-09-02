@@ -109,6 +109,25 @@ final class GistFavoritesViewController: UIViewController {
         viewModel.shouldReloadData.bind { [weak self] _ in
             self?.tableView.reloadData()
         }
+
+        viewModel.error.bind { [weak self] errorMessage in
+            guard let self = self else { return }
+
+            if let errorMessage = errorMessage {
+                self.showInformationState(with: errorMessage)
+            }
+        }
+    }
+
+    private func showInformationState(with message: String) {
+        informationView.isHidden = false
+        informationView.setup(
+            title: Strings.errorTitle,
+            subtitle: message,
+            buttonText: Strings.tryAgainButtonTitle
+        ) { [weak self] in
+            self?.viewModel.fetch()
+        }
     }
 
     // MARK: - Actions

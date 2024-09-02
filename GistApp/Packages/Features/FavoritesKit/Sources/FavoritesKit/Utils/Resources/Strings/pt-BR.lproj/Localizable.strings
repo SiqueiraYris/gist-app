@@ -2,3 +2,9 @@
 "favorites.user.name.title" = "Usuário: ";
 "favorites.files.quantity.title" = "Qt de arquivos: ";
 "favorites.clear.favorites.title" = "Limpar favoritos";
+"favorites.error.title" = "Ocorreu um erro";
+"favorites.error.repeat.button.title" = "Repetir";
+"favorites.error.close.button.title" = "Fechar";
+"favorites.clear.error.message" = "Não foi possível limpar os favoritos.";
+"favorites.error.try.again.button.title" = "Tentar novamente";
+"favorites.load.error.message" = "Não foi possível carregar os favoritos.";

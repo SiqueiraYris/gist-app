@@ -4,7 +4,9 @@ import ComponentsKit
 
 protocol GistFavoritesViewModelProtocol {
     var shouldReloadData: Dynamic<Bool> { get }
-    
+    var showInformationState: Dynamic<Bool> { get }
+    var error: Dynamic<String?> { get }
+
     func fetch()
     func numberOfRowsInSection(section: Int) -> Int
     func cellForRowAt(row: Int) -> DefaultItemData?
@@ -19,6 +21,8 @@ final class GistFavoritesViewModel: GistFavoritesViewModelProtocol {
     private var items: [GistFavoritesDataSource] = []
 
     var shouldReloadData: Dynamic<Bool> = Dynamic(false)
+    var showInformationState: Dynamic<Bool> = Dynamic(false)
+    var error: Dynamic<String?> = Dynamic(nil)
 
     // MARK: - Initializer
 
@@ -39,8 +43,7 @@ final class GistFavoritesViewModel: GistFavoritesViewModelProtocol {
             shouldReloadData.value = true
 
         case .failure:
-            // TODO: - show error
-            break
+            error.value = Strings.loadErrorMessage
         }
     }
 
@@ -63,7 +66,9 @@ final class GistFavoritesViewModel: GistFavoritesViewModelProtocol {
         if hasSuccess {
             fetch()
         } else {
-            // TODO: - show error
+            coordinator.showErrorAlert(with: Strings.clearErrorMessage) { [weak self] in
+                self?.clearFavorites()
+            }
         }
     }
 }
