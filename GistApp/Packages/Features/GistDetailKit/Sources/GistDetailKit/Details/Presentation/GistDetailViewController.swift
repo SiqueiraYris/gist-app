@@ -5,17 +5,7 @@ import ComponentsKit
 final class GistDetailViewController: UIViewController {
     // MARK: - Views
 
-    private let avatar = Avatar()
-
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 22)
-        label.textColor = Colors.gray_100
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private let cardView = DefaultItemView()
 
     private let contentTextView: UITextView = {
         let textView = UITextView()
@@ -100,8 +90,7 @@ final class GistDetailViewController: UIViewController {
     }
 
     private func setupViewHierarchy() {
-        view.addSubview(avatar)
-        view.addSubview(titleLabel)
+        view.addSubview(cardView)
         view.addSubview(contentTextView)
         view.addSubview(loadingIndicator)
         view.addSubview(informationView)
@@ -109,14 +98,11 @@ final class GistDetailViewController: UIViewController {
 
     private func setupViewConstraints() {
         NSLayoutConstraint.activate([
-            avatar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Spacings.sm),
-            avatar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            cardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Spacings.sm),
+            cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Spacings.sm),
+            cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Spacings.sm),
 
-            titleLabel.topAnchor.constraint(equalTo: avatar.bottomAnchor, constant: Spacings.md),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Spacings.sm),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Spacings.sm),
-
-            contentTextView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Spacings.md),
+            contentTextView.topAnchor.constraint(equalTo: cardView.bottomAnchor, constant: Spacings.md),
             contentTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Spacings.sm),
             contentTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Spacings.sm),
             contentTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Spacings.xs),
@@ -124,7 +110,7 @@ final class GistDetailViewController: UIViewController {
             loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 
-            informationView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Spacings.xl),
+            informationView.topAnchor.constraint(equalTo: cardView.bottomAnchor, constant: Spacings.xl),
             informationView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
                                                      constant: Spacings.lg),
             informationView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
@@ -160,10 +146,7 @@ final class GistDetailViewController: UIViewController {
     }
 
     private func setupData() {
-        titleLabel.text = viewModel.getUserName()
-        if let url = viewModel.getAvatar(), let imageURL = URL(string: url) {
-            avatar.download(from: imageURL)
-        }
+        cardView.setupData(data: viewModel.getData())
     }
 
     private func setupBindings() {

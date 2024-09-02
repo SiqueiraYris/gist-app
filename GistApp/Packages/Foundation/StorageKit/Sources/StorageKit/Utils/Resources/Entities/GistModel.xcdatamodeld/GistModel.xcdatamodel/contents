@@ -3,6 +3,7 @@
     <entity name="GistModel" representedClassName="GistModel" syncable="YES" codeGenerationType="class">
         <attribute name="avatarURL" optional="YES" attributeType="String"/>
         <attribute name="filename" optional="YES" attributeType="String"/>
+        <attribute name="filesQuantity" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="gistContent" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="userName" optional="YES" attributeType="String"/>

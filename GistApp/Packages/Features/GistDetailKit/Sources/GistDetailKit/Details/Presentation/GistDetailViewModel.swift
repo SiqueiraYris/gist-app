@@ -1,5 +1,6 @@
 import UIKit
 import DynamicKit
+import ComponentsKit
 
 protocol GistDetailViewModelProtocol {
     var isLoading: Dynamic<Bool> { get }
@@ -8,6 +9,7 @@ protocol GistDetailViewModelProtocol {
     var isFavorited: Dynamic<Bool> { get }
 
     func fetch()
+    func getData() -> DefaultItemData?
     func getUserName() -> String?
     func getAvatar() -> String?
     func copyContent(text: String?)
@@ -74,6 +76,14 @@ final class GistDetailViewModel: GistDetailViewModelProtocol {
 
     func getAvatar() -> String? {
         return dataSource.avatarURL
+    }
+
+    func getData() -> DefaultItemData? {
+        return DefaultItemData(
+            title: Strings.userNameTitle.appending(dataSource.userName ?? ""),
+            subtitle: Strings.filesQuantityTitle.appending("\(dataSource.filesQuantity)"),
+            image: dataSource.avatarURL
+        )
     }
 
     func copyContent(text: String?) {

@@ -7,4 +7,6 @@ struct Strings {
     static let errorRepeatButtonTitle = "detail.error.repeat.button.title".localized
     static let errorCloseButtonTitle = "detail.error.close.button.title".localized
     static let genericErrorMessage = "detail.error.generic.message".localized
+    static let userNameTitle = "detail.user.name.title".localized
+    static let filesQuantityTitle = "detail.files.quantity.title".localized
 }

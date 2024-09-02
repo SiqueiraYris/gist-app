@@ -6,3 +6,5 @@
 "detail.error.repeat.button.title" = "Repetir";
 "detail.error.close.button.title" = "Fechar";
 "detail.error.generic.message" = "Não foi possível salvar os dados neste momento.";
+"detail.user.name.title" = "Usuário: ";
+"detail.files.quantity.title" = "Qt de arquivos: ";

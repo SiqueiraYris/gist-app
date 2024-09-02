@@ -111,7 +111,8 @@ final class GistListViewModel: GistListViewModelProtocol {
             avatarURL: item.owner.avatarURL,
             userName: item.owner.userName,
             filename: item.files.first?.value.filename,
-            fileURL: item.files.first?.value.fileURL
+            fileURL: item.files.first?.value.fileURL, 
+            filesQuantity: item.files.count
         )
         coordinator.openDetails(with: gist.toDictionary())
     }
