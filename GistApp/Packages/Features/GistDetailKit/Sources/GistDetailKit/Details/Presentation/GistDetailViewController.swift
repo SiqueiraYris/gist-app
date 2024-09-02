@@ -88,7 +88,6 @@ final class GistDetailViewController: UIViewController {
 
         setupViewHierarchy()
         setupViewConstraints()
-        setupData()
     }
 
     private func setupViewHierarchy() {
@@ -153,16 +152,17 @@ final class GistDetailViewController: UIViewController {
         navigationItem.rightBarButtonItems = [favoriteButton, copyButton]
     }
 
-    private func setupData() {
-        titleView.setupData(title: viewModel.getTitleData())
-        cardView.setupData(data: viewModel.getData())
-    }
-
     private func setupBindings() {
         viewModel.isLoading.bind { [weak self] isLoading in
             guard let self = self else { return }
             self.loadingIndicator.isHidden = !isLoading
-            isLoading ? self.loadingIndicator.startAnimating() : self.loadingIndicator.stopAnimating()
+            if isLoading {
+                self.loadingIndicator.startAnimating()
+                self.shouldHideContent(isHidden: true)
+            } else {
+                self.loadingIndicator.stopAnimating()
+                self.shouldHideContent(isHidden: false)
+            }
         }
 
         viewModel.error.bind { [weak self] errorMessage in
@@ -183,6 +183,12 @@ final class GistDetailViewController: UIViewController {
             guard let self else { return }
             self.favoriteItem?.image = UIImage(systemName: self.viewModel.getIcon())
         }
+
+        viewModel.showData.bind { [weak self] _ in
+            guard let self else { return }
+            self.titleView.setupData(title: self.viewModel.getTitleData())
+            self.cardView.setupData(data: self.viewModel.getData())
+        }
     }
 
     private func showInformationState(with message: String) {
@@ -201,6 +207,11 @@ final class GistDetailViewController: UIViewController {
     private func showToast() {
         let toast = ToastView(text: Strings.copyToastTitle)
         toast.show(in: view)
+    }
+
+    private func shouldHideContent(isHidden: Bool) {
+        cardView.isHidden = isHidden
+        titleView.isHidden = isHidden
     }
 
     // MARK: - Actions

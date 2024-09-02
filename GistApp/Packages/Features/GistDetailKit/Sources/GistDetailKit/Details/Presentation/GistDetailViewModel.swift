@@ -7,6 +7,7 @@ protocol GistDetailViewModelProtocol {
     var error: Dynamic<String?> { get }
     var content: Dynamic<String?> { get }
     var isFavorited: Dynamic<Bool> { get }
+    var showData: Dynamic<Bool> { get }
 
     func fetch()
     func getData() -> DefaultItemData?
@@ -28,6 +29,7 @@ final class GistDetailViewModel: GistDetailViewModelProtocol {
     var error: Dynamic<String?> = Dynamic(nil)
     var content: Dynamic<String?> = Dynamic(nil)
     var isFavorited: Dynamic<Bool> = Dynamic(false)
+    var showData: Dynamic<Bool> = Dynamic(false)
 
     // MARK: - Initializer
     
@@ -48,24 +50,9 @@ final class GistDetailViewModel: GistDetailViewModelProtocol {
     func fetch() {
         isLoading.value = true
 
-        guard let fileURL = dataSource.fileURL,
-              let url = URL(string: fileURL),
-              let host = url.host else { return }
-        let request = GistDetailRequest(host: host, path: url.path)
-        let route = GistDetailServiceRoute.fetchDetail(request: request)
-
-        service.fetch(route) { [weak self] result in
-            guard let self else { return }
-            self.isLoading.value = false
-
-            switch result {
-            case let .success(content):
-                self.dataSource.content = content
-                self.content.value = content
-
-            case let .failure(error):
-                self.error.value = error.errorDescription
-            }
+        service.downloadImage(from: dataSource.avatarURL ?? "") { [weak self] data in
+            self?.dataSource.imageData = data
+            self?.fetchData()
         }
     }
 
@@ -73,7 +60,8 @@ final class GistDetailViewModel: GistDetailViewModelProtocol {
         return DefaultItemData(
             title: Strings.userNameTitle.appending(dataSource.userName ?? ""),
             subtitle: Strings.filesQuantityTitle.appending("\(dataSource.filesQuantity)"),
-            image: dataSource.avatarURL
+            image: dataSource.avatarURL,
+            imageData: dataSource.imageData
         )
     }
 
@@ -116,6 +104,29 @@ final class GistDetailViewModel: GistDetailViewModelProtocol {
             with: Strings.genericErrorMessage
         ) { [weak self] in
             self?.favoriteItem()
+        }
+    }
+
+    private func fetchData() {
+        guard let fileURL = dataSource.fileURL,
+              let url = URL(string: fileURL),
+              let host = url.host else { return }
+        let request = GistDetailRequest(host: host, path: url.path)
+        let route = GistDetailServiceRoute.fetchDetail(request: request)
+
+        service.fetch(route) { [weak self] result in
+            guard let self else { return }
+            self.isLoading.value = false
+
+            switch result {
+            case let .success(content):
+                self.dataSource.content = content
+                self.content.value = content
+                self.showData.value = true
+
+            case let .failure(error):
+                self.error.value = error.errorDescription
+            }
         }
     }
 }

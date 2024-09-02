@@ -1,3 +1,5 @@
+import Foundation
+
 public struct GistItem: Codable {
     let id: String?
     let userName: String?
@@ -5,6 +7,7 @@ public struct GistItem: Codable {
     let filename: String?
     let gistContent: String?
     let filesQuantity: Int
+    let imageData: Data?
 
     public init(
         id: String? = nil,
@@ -12,7 +15,8 @@ public struct GistItem: Codable {
         avatarURL: String? = nil,
         filename: String? = nil,
         gistContent: String? = nil,
-        filesQuantity: Int
+        filesQuantity: Int,
+        imageData: Data? = nil
     ) {
         self.id = id
         self.userName = userName
@@ -20,5 +24,6 @@ public struct GistItem: Codable {
         self.filename = filename
         self.gistContent = gistContent
         self.filesQuantity = filesQuantity
+        self.imageData = imageData
     }
 }

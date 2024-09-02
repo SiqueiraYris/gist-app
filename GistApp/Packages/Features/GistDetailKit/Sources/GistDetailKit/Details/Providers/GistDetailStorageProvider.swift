@@ -44,7 +44,8 @@ final class GistDetailStorageProvider: GistDetailStorageProviderProtocol {
             avatarURL: dataSource.avatarURL,
             filename: dataSource.filename,
             gistContent: dataSource.content, 
-            filesQuantity: dataSource.filesQuantity
+            filesQuantity: dataSource.filesQuantity,
+            imageData: dataSource.imageData
         )
 
         guard let data = try? JSONEncoder().encode(gistItem), let id = dataSource.id else {

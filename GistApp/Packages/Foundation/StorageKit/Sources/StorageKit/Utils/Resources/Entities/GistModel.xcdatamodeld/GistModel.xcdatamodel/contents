@@ -6,6 +6,7 @@
         <attribute name="filesQuantity" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="gistContent" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary"/>
         <attribute name="userName" optional="YES" attributeType="String"/>
     </entity>
 </model>

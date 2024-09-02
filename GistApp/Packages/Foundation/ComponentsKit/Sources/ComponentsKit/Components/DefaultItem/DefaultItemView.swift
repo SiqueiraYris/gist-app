@@ -42,7 +42,9 @@ public final class DefaultItemView: UIView {
         titleLabel.text = data?.title
         subtitleLabel.text = data?.subtitle
 
-        if let url = data?.image, let imageURL = URL(string: url) {
+        if let data = data?.imageData {
+            avatar.image = UIImage(data: data)
+        } else if let url = data?.image, let imageURL = URL(string: url) {
             avatar.download(from: imageURL)
         }
     }

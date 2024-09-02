@@ -65,7 +65,7 @@ final class GistFavoritesViewModel: GistFavoritesViewModelProtocol {
         return DefaultItemData(
             title: Strings.userNameTitle.appending(item?.userName ?? ""),
             subtitle: Strings.filesQuantityTitle.appending("\(item?.filesQuantity ?? 0)"),
-            image: ""
+            imageData: item?.imageData
         )
     }
 

@@ -20,7 +20,6 @@ final class GistFavoritesStorageProvider: GistFavoritesStorageProviderProtocol {
     // MARK: - Methods
 
     func fetchAllGists() -> Result<[GistFavoritesDataSource], Error> {
-//        return .failure(NSError(domain: "", code: 1))
         let result = storageManager.fetchAll(entity: GistModel.self)
 
         switch result {
@@ -32,7 +31,8 @@ final class GistFavoritesStorageProvider: GistFavoritesStorageProviderProtocol {
                     avatarURL: gistModel.avatarURL,
                     filename: gistModel.filename,
                     gistContent: gistModel.gistContent, 
-                    filesQuantity: Int(gistModel.filesQuantity)
+                    filesQuantity: Int(gistModel.filesQuantity), 
+                    imageData: gistModel.imageData
                 )
             }
             return .success(gistItems)

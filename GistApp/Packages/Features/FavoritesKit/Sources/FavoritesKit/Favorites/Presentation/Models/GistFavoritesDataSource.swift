@@ -1,3 +1,5 @@
+import Foundation
+
 struct GistFavoritesDataSource {
     let id: String?
     let userName: String?
@@ -5,4 +7,5 @@ struct GistFavoritesDataSource {
     let filename: String?
     let gistContent: String?
     let filesQuantity: Int
+    let imageData: Data?
 }

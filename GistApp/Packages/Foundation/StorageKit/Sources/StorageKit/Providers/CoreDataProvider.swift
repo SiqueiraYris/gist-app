@@ -48,6 +48,7 @@ final class CoreDataProvider {
             gistEntity.id = gistItem.id
             gistEntity.filename = gistItem.filename
             gistEntity.filesQuantity = Int32(gistItem.filesQuantity)
+            gistEntity.imageData = gistItem.imageData
 
             try context.save()
             return .success(())
@@ -72,7 +73,8 @@ final class CoreDataProvider {
                     avatarURL: result.avatarURL,
                     filename: result.filename,
                     gistContent: result.gistContent, 
-                    filesQuantity: Int(result.filesQuantity)
+                    filesQuantity: Int(result.filesQuantity),
+                    imageData: result.imageData
                 )
 
                 let data = try JSONEncoder().encode(gistItem)

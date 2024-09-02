@@ -8,6 +8,7 @@ protocol GistDetailServiceProtocol {
         _ route: GistDetailServiceRoute,
         completion: @escaping(GistDetailResult) -> Void
     )
+    func downloadImage(from url: String, completion: @escaping (Data?) -> Void)
 }
 
 final class GistDetailService: GistDetailServiceProtocol {
@@ -35,5 +36,21 @@ final class GistDetailService: GistDetailServiceProtocol {
             }
         }
     }
-}
 
+    func downloadImage(from url: String, completion: @escaping (Data?) -> Void) {
+        guard let imageURL = URL(string: url) else {
+            completion(nil)
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: imageURL) { data, response, error in
+            if let data = data, error == nil {
+                completion(data)
+            } else {
+                completion(nil)
+            }
+        }
+
+        task.resume()
+    }
+}
