@@ -45,13 +45,13 @@ final class GistFavoritesViewController: UIViewController {
         super.viewWillAppear(animated)
 
         setupNavigation()
+        viewModel.fetch()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupBindings()
-        viewModel.fetch()
     }
 
     // MARK: - Methods
@@ -61,6 +61,7 @@ final class GistFavoritesViewController: UIViewController {
         title = Strings.navigationTitle
 
         tableView.dataSource = self
+        tableView.delegate = self
 
         setupViewHierarchy()
         setupViewConstraints()
@@ -179,5 +180,13 @@ extension GistFavoritesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.numberOfRowsInSection(section: section)
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension GistFavoritesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didSelectRowAt(row: indexPath.row)
     }
 }

@@ -14,6 +14,7 @@ protocol GistFavoritesViewModelProtocol {
     func cellForRowAt(row: Int) -> DefaultItemData?
     func back()
     func clearFavorites()
+    func didSelectRowAt(row: Int)
 }
 
 final class GistFavoritesViewModel: GistFavoritesViewModelProtocol {
@@ -78,6 +79,11 @@ final class GistFavoritesViewModel: GistFavoritesViewModelProtocol {
             guard let self = self, confirmed else { return }
             self.clear()
         }
+    }
+
+    func didSelectRowAt(row: Int) {
+        guard let item = items[safe: row] else { return }
+        coordinator.openDetails(with: item.toDictionary())
     }
 
     private func clear() {

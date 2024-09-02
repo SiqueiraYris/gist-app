@@ -5,6 +5,7 @@ protocol GistFavoritesCoordinatorProtocol {
     func showErrorAlert(with message: String, retryAction: @escaping () -> Void)
     func showClearConfirmationAlert(completion: @escaping (Bool) -> Void)
     func back()
+    func openDetails(with data: [AnyHashable: Any]?)
 }
 
 final class GistFavoritesCoordinator: GistFavoritesCoordinatorProtocol {
@@ -64,5 +65,11 @@ final class GistFavoritesCoordinator: GistFavoritesCoordinatorProtocol {
 
     func back() {
         navigator?.popViewController(animated: true)
+    }
+
+    func openDetails(with data: [AnyHashable: Any]?) {
+        if let url = URL(string: "gist-app://gist-detail") {
+            RoutingHub.shared.start(url: url, on: navigator, with: data)
+        }
     }
 }

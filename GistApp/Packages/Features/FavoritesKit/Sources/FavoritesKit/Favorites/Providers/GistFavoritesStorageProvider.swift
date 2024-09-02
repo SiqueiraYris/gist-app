@@ -30,7 +30,7 @@ final class GistFavoritesStorageProvider: GistFavoritesStorageProviderProtocol {
                     userName: gistModel.userName,
                     avatarURL: gistModel.avatarURL,
                     filename: gistModel.filename,
-                    gistContent: gistModel.gistContent, 
+                    content: gistModel.gistContent, 
                     filesQuantity: Int(gistModel.filesQuantity), 
                     imageData: gistModel.imageData
                 )
