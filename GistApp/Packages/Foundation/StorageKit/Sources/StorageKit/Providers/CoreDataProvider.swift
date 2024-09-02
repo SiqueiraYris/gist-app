@@ -26,11 +26,19 @@ final class CoreDataProvider {
 
         do {
             guard let entityDescription = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
-                throw NSError(domain: "CoreDataProvider", code: 1, userInfo: [NSLocalizedDescriptionKey: "Entity \(entityName) not found in Core Data model"])
+                throw NSError(
+                    domain: "CoreDataProvider",
+                    code: 1,
+                    userInfo: [NSLocalizedDescriptionKey: "Entity \(entityName) not found in Core Data model"]
+                )
             }
 
             guard let gistEntity = NSManagedObject(entity: entityDescription, insertInto: context) as? GistModel else {
-                throw NSError(domain: "CoreDataProvider", code: 2, userInfo: [NSLocalizedDescriptionKey: "Failed to create instance of \(entityName) as GistModel"])
+                throw NSError(
+                    domain: "CoreDataProvider",
+                    code: 2,
+                    userInfo: [NSLocalizedDescriptionKey: "Failed to create instance of \(entityName) as GistModel"]
+                )
             }
 
             let gistItem = try JSONDecoder().decode(GistItem.self, from: data)
@@ -53,11 +61,20 @@ final class CoreDataProvider {
         let entityName = String(describing: entity)
 
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "key == %@", key)
+        fetchRequest.predicate = NSPredicate(format: "id == %@", key)
 
         do {
-            if let result = try context.fetch(fetchRequest).first as? NSManagedObject {
-                return .success(result.value(forKey: "data") as? Data)
+            if let result = try context.fetch(fetchRequest).first as? GistModel {
+                let gistItem = GistItem(
+                    id: result.id,
+                    userName: result.userName,
+                    avatarURL: result.avatarURL,
+                    filename: result.filename,
+                    gistContent: result.gistContent
+                )
+
+                let data = try JSONEncoder().encode(gistItem)
+                return .success(data)
             }
             return .success(nil)
         } catch {
@@ -70,7 +87,7 @@ final class CoreDataProvider {
         let entityName = String(describing: entity)
 
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "key == %@", key)
+        fetchRequest.predicate = NSPredicate(format: "id == %@", key)
 
         do {
             if let result = try context.fetch(fetchRequest).first as? NSManagedObject {
@@ -78,7 +95,13 @@ final class CoreDataProvider {
                 try context.save()
                 return .success(())
             }
-            return .failure(NSError(domain: "CoreDataProvider", code: 3, userInfo: [NSLocalizedDescriptionKey: "Object not found for key \(key)"]))
+            return .failure(
+                NSError(
+                    domain: "CoreDataProvider",
+                    code: 3,
+                    userInfo: [NSLocalizedDescriptionKey: "Object not found for key: \(key)"]
+                )
+            )
         } catch {
             return .failure(error)
         }

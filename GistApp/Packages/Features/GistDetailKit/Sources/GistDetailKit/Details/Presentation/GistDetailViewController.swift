@@ -51,6 +51,9 @@ final class GistDetailViewController: UIViewController {
         return view
     }()
 
+    private var copyItem: UIBarButtonItem?
+    private var favoriteItem: UIBarButtonItem?
+
     // MARK: - Properties
 
     private let viewModel: GistDetailViewModelProtocol
@@ -132,24 +135,28 @@ final class GistDetailViewController: UIViewController {
     private func setupNavigation() {
         setupBackButton()
         setupNavigationBar(prefersLargeTitles: false)
+    }
 
-        let copyItem = UIBarButtonItem(
+    private func setupRightButtons() {
+        copyItem = UIBarButtonItem(
             image: UIImage(systemName: "doc.on.clipboard"),
             style: .plain,
             target: self,
             action: #selector(copyContent)
         )
-        copyItem.tintColor = Colors.primaryLight
+        copyItem?.tintColor = Colors.primaryLight
 
-        let favoriteItem = UIBarButtonItem(
-            image: UIImage(systemName: "star"),
+        favoriteItem = UIBarButtonItem(
+            image: UIImage(systemName: viewModel.getIcon()),
             style: .plain,
             target: self,
             action: #selector(didTapFavoriteButton)
         )
-        favoriteItem.tintColor = Colors.primaryLight
+        favoriteItem?.tintColor = Colors.primaryLight
 
-        navigationItem.rightBarButtonItems = [favoriteItem, copyItem]
+        guard let copyButton = copyItem, let favoriteButton = favoriteItem else { return }
+
+        navigationItem.rightBarButtonItems = [favoriteButton, copyButton]
     }
 
     private func setupData() {
@@ -170,17 +177,23 @@ final class GistDetailViewController: UIViewController {
             guard let self = self else { return }
 
             if let errorMessage = errorMessage {
-                self.showErrorState(with: errorMessage)
+                self.showInformationState(with: errorMessage)
             }
         }
 
         viewModel.content.bind { [weak self] content in
             self?.contentTextView.text = content
             self?.contentTextView.isHidden = false
+            self?.setupRightButtons()
+        }
+
+        viewModel.isFavorited.bind { [weak self] isFavorited in
+            guard let self else { return }
+            self.favoriteItem?.image = UIImage(systemName: self.viewModel.getIcon())
         }
     }
 
-    private func showErrorState(with message: String) {
+    private func showInformationState(with message: String) {
         informationView.isHidden = false
         contentTextView.isHidden = true
         informationView.setup(

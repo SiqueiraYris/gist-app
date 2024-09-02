@@ -4,4 +4,5 @@ struct GistDetailDataSource: Decodable {
     let userName: String?
     let filename: String?
     let fileURL: String?
+    var content: String?
 }

@@ -14,7 +14,7 @@ enum GistDetailServiceRoute: NetworkRouteProtocol {
         let config = RequestConfig(
             host: request.host,
             path: request.path,
-            method: .get, debugMode: true
+            method: .get
         )
         return config
     }

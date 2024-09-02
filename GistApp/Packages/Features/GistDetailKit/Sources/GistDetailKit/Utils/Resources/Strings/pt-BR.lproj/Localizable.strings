@@ -2,3 +2,7 @@
 "detail.error.try.again.button.title" = "Tentar novamente";
 "detail.toast.title" = "Gist copiado!";
 "detail.information.view.title" = "Ocorreu um erro";
+"detail.error.title" = "Ocorreu um erro";
+"detail.error.repeat.button.title" = "Repetir";
+"detail.error.close.button.title" = "Fechar";
+"detail.error.generic.message" = "Não foi possível salvar os dados neste momento.";

@@ -12,6 +12,7 @@ protocol GistDetailViewModelProtocol {
     func getAvatar() -> String?
     func copyContent(text: String?)
     func favoriteItem()
+    func getIcon() -> String
 }
 
 final class GistDetailViewModel: GistDetailViewModelProtocol {
@@ -20,7 +21,7 @@ final class GistDetailViewModel: GistDetailViewModelProtocol {
     private let coordinator: GistDetailCoordinatorProtocol
     private let service: GistDetailServiceProtocol
     private let storageProvider: GistDetailStorageProviderProtocol
-    private let dataSource: GistDetailDataSource
+    private var dataSource: GistDetailDataSource
 
     var isLoading: Dynamic<Bool> = Dynamic(false)
     var error: Dynamic<String?> = Dynamic(nil)
@@ -58,6 +59,7 @@ final class GistDetailViewModel: GistDetailViewModelProtocol {
 
             switch result {
             case let .success(content):
+                self.dataSource.content = content
                 self.content.value = content
 
             case let .failure(error):
@@ -79,15 +81,36 @@ final class GistDetailViewModel: GistDetailViewModelProtocol {
     }
 
     func favoriteItem() {
-        // TODO: - Save in core data
-        // TODO: - Change icon when it's saved
-        let hasSaved = storageProvider.saveData(
-            id: dataSource.id,
-            userName: dataSource.userName,
-            avatarURL: dataSource.avatarURL,
-            filename: dataSource.filename,
-            gistContent: content.value
-        )
-        print("aqui salvou? \(hasSaved)")
+        if storageProvider.isFavorited(id: dataSource.id) {
+            let hasDeleted = storageProvider.deleteItem(id: dataSource.id)
+
+            if hasDeleted {
+                isFavorited.value = false
+            } else {
+                isFavorited.value = true
+                showStorageErrorAlert()
+            }
+        } else {
+            let hasSaved = storageProvider.saveData(dataSource: dataSource)
+
+            if hasSaved {
+                isFavorited.value = true
+            } else {
+                isFavorited.value = false
+                showStorageErrorAlert()
+            }
+        }
+    }
+
+    func getIcon() -> String {
+        return storageProvider.isFavorited(id: dataSource.id) ? "star.fill" : "star"
+    }
+
+    private func showStorageErrorAlert() {
+        coordinator.showErrorAlert(
+            with: Strings.genericErrorMessage
+        ) { [weak self] in
+            self?.favoriteItem()
+        }
     }
 }

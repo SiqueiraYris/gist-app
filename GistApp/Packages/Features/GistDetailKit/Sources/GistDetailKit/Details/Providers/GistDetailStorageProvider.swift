@@ -2,13 +2,9 @@ import StorageKit
 import Foundation
 
 protocol GistDetailStorageProviderProtocol {
-    func saveData(
-        id: String?,
-        userName: String?,
-        avatarURL: String?, 
-        filename: String?,
-        gistContent: String?
-    ) -> Bool
+    func isFavorited(id: String?) -> Bool
+    func saveData(dataSource: GistDetailDataSource) -> Bool
+    func deleteItem(id: String?) -> Bool
 }
 
 final class GistDetailStorageProvider: GistDetailStorageProviderProtocol {
@@ -24,32 +20,54 @@ final class GistDetailStorageProvider: GistDetailStorageProviderProtocol {
 
     // MARK: - Methods
 
-//    func isFavorited() -> Bool {
-//
-//    }
+    func isFavorited(id: String?) -> Bool {
+        guard let id = id else {
+            return false
+        }
 
-    func saveData(
-        id: String?,
-        userName: String?,
-        avatarURL: String?,
-        filename: String?,
-        gistContent: String?
-    ) -> Bool {
+        let entity = GistModel.self
+        let result = storageManager.load(key: id, entity: entity)
+
+        switch result {
+        case .success(let data):
+            return data != nil
+
+        case .failure:
+            return false
+        }
+    }
+
+    func saveData(dataSource: GistDetailDataSource) -> Bool {
         let gistItem = GistItem(
-            id: id,
-            userName: userName,
-            avatarURL: avatarURL,
-            filename: filename,
-            gistContent: gistContent
+            id: dataSource.id,
+            userName: dataSource.userName,
+            avatarURL: dataSource.avatarURL,
+            filename: dataSource.filename,
+            gistContent: dataSource.content
         )
 
-        guard let data = try? JSONEncoder().encode(gistItem) else {
+        guard let data = try? JSONEncoder().encode(gistItem), let id = dataSource.id else {
             return false
         }
 
         let entity = GistModel.self
 
-        let result = storageManager.save(key: "gist-item", data: data, entity: entity)
+        let result = storageManager.save(key: id, data: data, entity: entity)
+
+        switch result {
+        case .success:
+            return true
+
+        case .failure:
+            return false
+        }
+    }
+
+    func deleteItem(id: String?) -> Bool {
+        guard let id = id else { return false }
+
+        let entity = GistModel.self
+        let result = storageManager.delete(key: id, entity: entity)
 
         switch result {
         case .success:
