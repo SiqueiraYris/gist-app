@@ -1,7 +1,7 @@
 import UIKit
 import CommonKit
 import NetworkKit
-import StorageKit
+import DatabaseKit
 
 public struct GistDetailComposer {
     public static func startScene(

@@ -1,5 +1,5 @@
 import UIKit
-import StorageKit
+import DatabaseKit
 
 public struct GistFavoritesComposer {
     public static func startScene(_ navigator: UINavigationController?) {

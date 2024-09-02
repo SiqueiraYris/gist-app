@@ -15,7 +15,7 @@ final class RouteDescriptorSpy: RouteDescriptor {
         return valueToBeReturned
     }
 
-    func start(url: URL, on navigator: UINavigationController?) {
+    func start(url: URL, on navigator: UINavigationController?, with userInfo: [AnyHashable: Any]?) {
         receivedMessages.append(.startWithNavigationController(url: url, navigator: navigator))
     }
 }

@@ -24,14 +24,6 @@ public final class RoutingHub: RoutingHubProtocol {
         descriptors.append(descriptor)
     }
 
-//    public func start(url: URL, on navigation: UINavigationController?) {
-//        guard let descriptor = descriptors.first(where: { $0.match(url: url) }) else {
-//            return
-//        }
-//
-//        descriptor.start(url: url, on: navigation)
-//    }
-
     public func start(url: URL, on navigation: UINavigationController?, with userInfo: [AnyHashable: Any]? = nil) {
         guard let descriptor = descriptors.first(where: { $0.match(url: url) }) else {
             return

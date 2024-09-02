@@ -4,23 +4,23 @@
 import PackageDescription
 
 let package = Package(
-    name: "StorageKit",
+    name: "DatabaseKit",
     products: [
         .library(
-            name: "StorageKit",
-            targets: ["StorageKit"]
-        )
+            name: "DatabaseKit",
+            targets: ["DatabaseKit"]
+        ),
     ],
     targets: [
         .target(
-            name: "StorageKit",
+            name: "DatabaseKit",
             resources: [
                 .process("Utils/Resources/Entities/")
             ]
         ),
         .testTarget(
-            name: "StorageKitTests",
-            dependencies: ["StorageKit"]
+            name: "DatabaseKitTests",
+            dependencies: ["DatabaseKit"]
         )
     ]
 )

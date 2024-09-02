@@ -18,7 +18,7 @@ let package = Package(
         .package(path: "../Foundation/CommonKit"),
         .package(path: "../Foundation/DynamicKit"),
         .package(path: "../Foundation/NetworkKit"),
-        .package(path: "../Foundation/StorageKit")
+        .package(path: "../Foundation/DatabaseKit")
     ],
     targets: [
         .target(
@@ -28,11 +28,10 @@ let package = Package(
                 "CommonKit",
                 "DynamicKit",
                 "NetworkKit",
-                "StorageKit"
+                "DatabaseKit"
             ],
             resources: [
-                .process("Utils/Resources/Strings/"),
-//                .process("Utils/Resources/Entities/")
+                .process("Utils/Resources/Strings/")
             ]
         ),
         .testTarget(

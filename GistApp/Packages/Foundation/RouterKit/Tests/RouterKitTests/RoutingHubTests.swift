@@ -45,7 +45,6 @@ final class RoutingHubTests: XCTestCase {
     func test_register_shouldDeliversCorrectResult() {
         let routeDescriptorSpy = RouteDescriptorSpy()
         let scheme = "any-scheme"
-        let url = URL(string: "\(scheme)://any-url")!
         let sut = makeSUT(scheme: scheme)
 
         sut.register(descriptor: routeDescriptorSpy)

@@ -1,5 +1,5 @@
-import StorageKit
 import Foundation
+import DatabaseKit
 
 protocol GistFavoritesStorageProviderProtocol { 
     func fetchAllGists() -> Result<[GistFavoritesDataSource], Error>

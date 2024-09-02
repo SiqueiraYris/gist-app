@@ -16,7 +16,6 @@
 		4D1B8A182C83C00200CC3F06 /* FavoritesKit in Resources */ = {isa = PBXBuildFile; fileRef = 4D1B8A142C83C00200CC3F06 /* FavoritesKit */; };
 		4D1B8A192C83C00200CC3F06 /* GistDetailKit in Resources */ = {isa = PBXBuildFile; fileRef = 4D1B8A152C83C00200CC3F06 /* GistDetailKit */; };
 		4D1B8A1A2C83C00200CC3F06 /* NetworkKit in Resources */ = {isa = PBXBuildFile; fileRef = 4D1B8A172C83C00200CC3F06 /* NetworkKit */; };
-		4D6987F62C8500C300F6B9C2 /* StorageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4D6987F52C8500C300F6B9C2 /* StorageKit */; };
 		4D706A7B2C83CB0A0095DD64 /* GistDetailRouteDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D706A7A2C83CB0A0095DD64 /* GistDetailRouteDescriptor.swift */; };
 		4D706A7D2C83CB380095DD64 /* FavoritesRouteDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D706A7C2C83CB380095DD64 /* FavoritesRouteDescriptor.swift */; };
 		4D706A802C83CD720095DD64 /* GistDetailKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4D706A7F2C83CD720095DD64 /* GistDetailKit */; };
@@ -25,6 +24,7 @@
 		4D71DBDF2C83C19000F88D17 /* DescriptorsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D71DBDC2C83C18F00F88D17 /* DescriptorsManager.swift */; };
 		4D71DBE02C83C19000F88D17 /* GistRouteDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D71DBDE2C83C18F00F88D17 /* GistRouteDescriptor.swift */; };
 		4D71DBE22C83C19C00F88D17 /* GistKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4D71DBE12C83C19C00F88D17 /* GistKit */; };
+		4DE0BCA72C8664EB00E69F62 /* DatabaseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4DE0BCA62C8664EB00E69F62 /* DatabaseKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +50,7 @@
 		4D1B8A142C83C00200CC3F06 /* FavoritesKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = FavoritesKit; sourceTree = "<group>"; };
 		4D1B8A152C83C00200CC3F06 /* GistDetailKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GistDetailKit; sourceTree = "<group>"; };
 		4D1B8A172C83C00200CC3F06 /* NetworkKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkKit; sourceTree = "<group>"; };
-		4D6987EE2C84EB2200F6B9C2 /* StorageKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = StorageKit; sourceTree = "<group>"; };
+		4D69881B2C86640300F6B9C2 /* DatabaseKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DatabaseKit; sourceTree = "<group>"; };
 		4D706A7A2C83CB0A0095DD64 /* GistDetailRouteDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistDetailRouteDescriptor.swift; sourceTree = "<group>"; };
 		4D706A7C2C83CB380095DD64 /* FavoritesRouteDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouteDescriptor.swift; sourceTree = "<group>"; };
 		4D706A7E2C83CBF70095DD64 /* DynamicKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DynamicKit; sourceTree = "<group>"; };
@@ -69,7 +69,7 @@
 			files = (
 				4D71DBE22C83C19C00F88D17 /* GistKit in Frameworks */,
 				4D706A802C83CD720095DD64 /* GistDetailKit in Frameworks */,
-				4D6987F62C8500C300F6B9C2 /* StorageKit in Frameworks */,
+				4DE0BCA72C8664EB00E69F62 /* DatabaseKit in Frameworks */,
 				4D71DBDA2C83C17800F88D17 /* RouterKit in Frameworks */,
 				4D706A822C83CD760095DD64 /* FavoritesKit in Frameworks */,
 			);
@@ -166,7 +166,7 @@
 		4D1B8A162C83C00200CC3F06 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				4D6987EE2C84EB2200F6B9C2 /* StorageKit */,
+				4D69881B2C86640300F6B9C2 /* DatabaseKit */,
 				4D706A832C83FAD20095DD64 /* CommonKit */,
 				4D706A7E2C83CBF70095DD64 /* DynamicKit */,
 				4D71DBD82C83C16800F88D17 /* ComponentsKit */,
@@ -223,7 +223,7 @@
 				4D71DBE12C83C19C00F88D17 /* GistKit */,
 				4D706A7F2C83CD720095DD64 /* GistDetailKit */,
 				4D706A812C83CD760095DD64 /* FavoritesKit */,
-				4D6987F52C8500C300F6B9C2 /* StorageKit */,
+				4DE0BCA62C8664EB00E69F62 /* DatabaseKit */,
 			);
 			productName = GistApp;
 			productReference = 4D1B89BD2C8372C200CC3F06 /* GistApp.app */;
@@ -594,10 +594,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4D6987F52C8500C300F6B9C2 /* StorageKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = StorageKit;
-		};
 		4D706A7F2C83CD720095DD64 /* GistDetailKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GistDetailKit;
@@ -613,6 +609,10 @@
 		4D71DBE12C83C19C00F88D17 /* GistKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GistKit;
+		};
+		4DE0BCA62C8664EB00E69F62 /* DatabaseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DatabaseKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

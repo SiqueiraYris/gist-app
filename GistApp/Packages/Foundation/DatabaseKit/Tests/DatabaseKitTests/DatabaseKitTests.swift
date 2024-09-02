@@ -1,7 +1,7 @@
 import XCTest
-@testable import StorageKit
+@testable import DatabaseKit
 
-final class StorageKitTests: XCTestCase {
+final class DatabaseKitTests: XCTestCase {
     func testExample() throws {
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest

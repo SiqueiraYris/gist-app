@@ -1,6 +1,6 @@
 import UIKit
 import RouterKit
-import StorageKit
+import DatabaseKit
 
 final class AppStarter {
     private let navigation = UINavigationController()
