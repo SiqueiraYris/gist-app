@@ -3,6 +3,7 @@ import NetworkKit
 
 final class GistListNetworkManagerSpy: NetworkManagerProtocol {
     var completionPassed: ((GistListResult) -> Void)?
+    var result: ResponseResult?
 
     enum Message: Equatable {
         case request(result: GistListResult)
@@ -22,5 +23,6 @@ final class GistListNetworkManagerSpy: NetworkManagerProtocol {
         completionPassed = { [weak self] response in
             self?.receivedMessages.append(.request(result: response))
         }
+        completion(result!)
     }
 }

@@ -19,5 +19,6 @@ final class GistListCoordinatorSpy: GistListCoordinatorProtocol {
 
     func showErrorAlert(with message: String, retryAction: @escaping () -> Void) {
         receivedMessages.append(.showErrorAlert(message: message))
+        retryAction()
     }
 }
