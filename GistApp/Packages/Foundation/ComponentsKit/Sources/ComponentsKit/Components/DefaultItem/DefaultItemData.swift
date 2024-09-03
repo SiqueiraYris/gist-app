@@ -1,10 +1,10 @@
 import Foundation
 
 public struct DefaultItemData {
-    let title: String?
-    let subtitle: String?
-    let image: String?
-    let imageData: Data?
+    public let title: String?
+    public let subtitle: String?
+    public let image: String?
+    public let imageData: Data?
 
     public init(
         title: String? = nil, 

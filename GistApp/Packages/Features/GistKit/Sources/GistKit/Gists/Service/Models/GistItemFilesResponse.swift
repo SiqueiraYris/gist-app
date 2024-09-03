@@ -1,4 +1,4 @@
-struct GistItemFileResponse: Decodable {
+struct GistItemFileResponse: Decodable, Equatable {
     let filename: String
     let fileURL: String
 

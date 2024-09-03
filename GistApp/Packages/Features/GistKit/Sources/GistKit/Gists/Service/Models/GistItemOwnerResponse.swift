@@ -1,4 +1,4 @@
-struct GistItemOwnerResponse: Decodable {
+struct GistItemOwnerResponse: Decodable, Equatable {
     let avatarURL: String?
     let userName: String
 
