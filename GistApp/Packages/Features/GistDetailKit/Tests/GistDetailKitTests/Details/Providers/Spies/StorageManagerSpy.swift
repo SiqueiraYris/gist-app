@@ -12,31 +12,32 @@ final class StorageManagerSpy: DatabaseManagerProtocol {
 
     var receivedMessages = [Message]()
 
-    var clearResult: Result<Void, Error>?
-    var fetchAllResult: Result<[GistModel], Error>?
+    var loadResult: Result<Data?, Error>?
+    var saveResult: Result<Void, Error>?
+    var deleteResult: Result<Void, Error>?
 
     func save<T: NSManagedObject>(key: String, data: Data, entity: T.Type) -> Result<Void, Error> {
         receivedMessages.append(.save(key: key, data: data))
-        return .success(())
+        return saveResult!
     }
 
     func delete<T: NSManagedObject>(key: String, entity: T.Type) -> Result<Void, Error> {
         receivedMessages.append(.delete(key: key))
-        return .success(())
+        return deleteResult!
     }
 
     func load<T: NSManagedObject>(key: String, entity: T.Type) -> Result<Data?, Error> {
         receivedMessages.append(.load(key: key))
-        return .success(nil)
+        return loadResult!
     }
 
     func clear<T: NSManagedObject>(entity: T.Type) -> Result<Void, Error> {
         receivedMessages.append(.clear)
-        return clearResult!
+        return .success(())
     }
 
     func fetchAll<T: NSManagedObject>(entity: T.Type) -> Result<[T], Error> {
         receivedMessages.append(.fetchAll)
-        return fetchAllResult as! Result<[T], Error>
+        return .success([])
     }
 }

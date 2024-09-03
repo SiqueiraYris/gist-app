@@ -10,11 +10,11 @@ protocol GistDetailStorageProviderProtocol {
 final class GistDetailStorageProvider: GistDetailStorageProviderProtocol {
     // MARK: - Properties
     
-    private let storageManager: StorageManagerProtocol
+    private let storageManager: DatabaseManagerProtocol
 
     // MARK: - Initializer
 
-    init(storageManager: StorageManagerProtocol) {
+    init(storageManager: DatabaseManagerProtocol) {
         self.storageManager = storageManager
     }
 

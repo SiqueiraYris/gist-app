@@ -26,7 +26,7 @@ final class AppStarter {
 
         window?.rootViewController = navigation
 
-        _ = StorageManager.shared
+        _ = DatabaseManager.shared
 
         if let url = URL(string: "gist-app://gists") {
             routingHub.start(url: url, on: navigation)

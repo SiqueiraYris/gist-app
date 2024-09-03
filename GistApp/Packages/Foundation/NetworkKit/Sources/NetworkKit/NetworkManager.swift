@@ -6,7 +6,7 @@ public final class NetworkManager: NetworkManagerProtocol {
 
     public static var shared = NetworkManager()
 
-    private init(
+    init(
         session: URLSessionProtocol = URLSession.shared,
         queue: DispatchQueueProtocol = DispatchQueue.main
     ) {

@@ -1,6 +1,6 @@
 import Foundation
 
-struct GistDetailDataSource: Decodable {
+struct GistDetailDataSource: Decodable, Equatable {
     let id: String?
     let avatarURL: String?
     let userName: String?

@@ -46,7 +46,7 @@ The project is structured based on the `MVVM-C` design pattern and clean archite
 
 The project has an `Application` folder where are the app startup files located. It also has a `Resources` folder where are the project assets, configurations etc. The `Navigation` folder inside `Application` is the possible app navigation routes.
 
-The app has two schemes allowing you to change environments.
+The app has two schemes allowing you to change environments (Development and Production). Today it only has a host address provided by GitHub, but if a development address appears, the app is already prepared.
 
 ### Modularization
 
@@ -66,11 +66,17 @@ The application has three feature modules:
 ### Unit Tests
 
 - `DynamicKit`: unit tests are located in `DynamicKitTests`, the code coverage is 100%.
-- `RouterKit`: unit tests are located in `RouterKitTests`, the code coverage is 99%.
 - `CommonKit`:  unit tests are located in `CommonKitTests`, the code coverage is 98%.
+- `RouterKit`: unit tests are located in `RouterKitTests`, the code coverage is 99%.
+- `NetworkKit`: unit tests are located in `NetworkKitTests`, the code coverage is 87%.
 - `GistKit`: unit tests are located in `GistKitTests`, the code coverage is 88%.
+- `FavoritesKit`: unit tests are located in `FavoritesKitTests`, the code coverage is 82%.
+- `GistDetailKit`: unit tests are located in `GistDetailKitTests`, the code coverage is 81%. Note: when running the `GistDetailViewModelTests`, you need to enable an alert for pasting content into the simulator.
 
 ## Next steps
 
 - Show all files content of the Gist;
-- Add other languages (internationalization).
+- Add other languages (internationalization);
+- Add UI tests to `ComponentsKit`;
+- Change `DynamicKit` to `Combine`;
+- Use `Combine` in `RouterKit`.

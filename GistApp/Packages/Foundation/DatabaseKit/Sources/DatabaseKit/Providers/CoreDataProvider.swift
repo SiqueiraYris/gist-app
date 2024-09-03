@@ -3,21 +3,23 @@ import CoreData
 final class CoreDataProvider {
     private let persistentContainer: NSPersistentContainer
 
-    init() {
+    init(persistentContainer: NSPersistentContainer) {
+        self.persistentContainer = persistentContainer
+    }
+
+    convenience init() {
         guard let modelURL = Bundle.module.url(forResource: "GistModel", withExtension: "momd"),
               let managedObjectModel = NSManagedObjectModel(contentsOf: modelURL) else {
             fatalError("Failed to find model in the SPM bundle")
         }
 
-        persistentContainer = NSPersistentContainer(
-            name: "GistModel",
-            managedObjectModel: managedObjectModel
-        )
-        persistentContainer.loadPersistentStores { _, error in
+        let container = NSPersistentContainer(name: "GistModel", managedObjectModel: managedObjectModel)
+        container.loadPersistentStores { _, error in
             if let error = error {
                 fatalError("Failed to load persistent stores: \(error)")
             }
         }
+        self.init(persistentContainer: container)
     }
 
     func save<T: NSManagedObject>(key: String, data: Data, entity: T.Type) -> Result<Void, Error> {

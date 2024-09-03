@@ -1,7 +1,7 @@
 import Foundation
 import CoreData
 
-public protocol StorageManagerProtocol {
+public protocol DatabaseManagerProtocol {
     func save<T: NSManagedObject>(key: String, data: Data, entity: T.Type) -> Result<Void, Error>
     func delete<T: NSManagedObject>(key: String, entity: T.Type) -> Result<Void, Error>
     func load<T: NSManagedObject>(key: String, entity: T.Type) -> Result<Data?, Error>
@@ -9,10 +9,10 @@ public protocol StorageManagerProtocol {
     func fetchAll<T: NSManagedObject>(entity: T.Type) -> Result<[T], Error>
 }
 
-public final class StorageManager: StorageManagerProtocol {
+public final class DatabaseManager: DatabaseManagerProtocol {
     private let coreDataProvider: CoreDataProvider
 
-    public static let shared = StorageManager()
+    public static let shared = DatabaseManager()
 
     private init() {
         self.coreDataProvider = CoreDataProvider()

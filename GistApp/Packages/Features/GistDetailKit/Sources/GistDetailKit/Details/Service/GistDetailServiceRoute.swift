@@ -1,6 +1,6 @@
 import NetworkKit
 
-enum GistDetailServiceRoute: NetworkRouteProtocol {
+enum GistDetailServiceRoute: NetworkRouteProtocol, Equatable {
     case fetchDetail(request: GistDetailRequest)
 
     var config: RequestConfigProtocol {

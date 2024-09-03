@@ -10,7 +10,7 @@ public struct GistDetailComposer {
     ) {
         guard let dataSource = data?.toModel(GistDetailDataSource.self) else { return }
         let coordinator = GistDetailCoordinator(navigator: navigator)
-        let storageProvider = GistDetailStorageProvider(storageManager: StorageManager.shared)
+        let storageProvider = GistDetailStorageProvider(storageManager: DatabaseManager.shared)
         let service = GistDetailService(manager: NetworkManager.shared)
         let viewModel = GistDetailViewModel(
             coordinator: coordinator,
