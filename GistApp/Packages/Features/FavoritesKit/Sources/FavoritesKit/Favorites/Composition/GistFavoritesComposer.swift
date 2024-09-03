@@ -1,9 +1,10 @@
 import UIKit
 import DatabaseKit
+import RouterKit
 
 public struct GistFavoritesComposer {
     public static func startScene(_ navigator: UINavigationController?) {
-        let coordinator = GistFavoritesCoordinator(navigator: navigator)
+        let coordinator = GistFavoritesCoordinator(navigator: navigator, router: RoutingHub.shared)
         let storage = GistFavoritesStorageProvider(storageManager: StorageManager.shared)
         let viewModel = GistFavoritesViewModel(coordinator: coordinator, storage: storage)
         let viewController = GistFavoritesViewController(viewModel: viewModel)

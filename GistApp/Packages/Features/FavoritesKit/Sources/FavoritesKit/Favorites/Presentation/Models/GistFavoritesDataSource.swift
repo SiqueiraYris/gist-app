@@ -1,6 +1,6 @@
 import Foundation
 
-struct GistFavoritesDataSource: Encodable {
+struct GistFavoritesDataSource: Encodable, Equatable {
     let id: String?
     let userName: String?
     let avatarURL: String?

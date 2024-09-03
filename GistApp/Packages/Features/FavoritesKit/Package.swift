@@ -16,7 +16,9 @@ let package = Package(
     dependencies: [
         .package(path: "../Foundation/ComponentsKit"),
         .package(path: "../Foundation/CommonKit"),
-        .package(path: "../Foundation/DatabaseKit")
+        .package(path: "../Foundation/DatabaseKit"),
+        .package(path: "../Foundation/RouterKit"),
+        .package(path: "../Foundation/DynamicKit")
     ],
     targets: [
         .target(
@@ -24,7 +26,9 @@ let package = Package(
             dependencies: [
                 "ComponentsKit",
                 "CommonKit",
-                "DatabaseKit"
+                "DatabaseKit",
+                "RouterKit",
+                "DynamicKit"
             ],
             resources: [
                 .process("Utils/Resources/Strings/")

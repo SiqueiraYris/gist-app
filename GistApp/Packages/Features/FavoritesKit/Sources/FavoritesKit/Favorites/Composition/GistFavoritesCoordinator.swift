@@ -10,9 +10,11 @@ protocol GistFavoritesCoordinatorProtocol {
 
 final class GistFavoritesCoordinator: GistFavoritesCoordinatorProtocol {
     private weak var navigator: UINavigationController?
+    private let router: RoutingHubProtocol
 
-    init(navigator: UINavigationController?) {
+    init(navigator: UINavigationController?, router: RoutingHubProtocol) {
         self.navigator = navigator
+        self.router = router
     }
 
     func start(viewController: UIViewController) {
@@ -69,7 +71,7 @@ final class GistFavoritesCoordinator: GistFavoritesCoordinatorProtocol {
 
     func openDetails(with data: [AnyHashable: Any]?) {
         if let url = URL(string: "gist-app://gist-detail") {
-            RoutingHub.shared.start(url: url, on: navigator, with: data)
+            router.start(url: url, on: navigator, with: data)
         }
     }
 }
