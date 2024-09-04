@@ -156,12 +156,13 @@ final class GistDetailViewController: UIViewController {
         viewModel.isLoading.bind { [weak self] isLoading in
             guard let self = self else { return }
             self.loadingIndicator.isHidden = !isLoading
+            self.informationView.isHidden = true
+
             if isLoading {
                 self.loadingIndicator.startAnimating()
                 self.shouldHideContent(isHidden: true)
             } else {
                 self.loadingIndicator.stopAnimating()
-                self.shouldHideContent(isHidden: false)
             }
         }
 
@@ -175,7 +176,8 @@ final class GistDetailViewController: UIViewController {
 
         viewModel.content.bind { [weak self] content in
             self?.contentTextView.text = content
-            self?.contentTextView.isHidden = false
+            self?.informationView.isHidden = true
+            self?.shouldHideContent(isHidden: false)
             self?.setupRightButtons()
         }
 
@@ -186,6 +188,7 @@ final class GistDetailViewController: UIViewController {
 
         viewModel.showData.bind { [weak self] _ in
             guard let self else { return }
+            self.informationView.isHidden = true
             self.titleView.setupData(title: self.viewModel.getTitleData())
             self.cardView.setupData(data: self.viewModel.getData())
         }
@@ -193,13 +196,14 @@ final class GistDetailViewController: UIViewController {
 
     private func showInformationState(with message: String) {
         informationView.isHidden = false
-        contentTextView.isHidden = true
+//        contentTextView.isHidden = true
         informationView.setup(
             title: Strings.informationTitle,
             subtitle: message,
             buttonText: Strings.tryAgainButtonTitle
         ) { [weak self] in
             self?.informationView.isHidden = true
+            self?.shouldHideContent(isHidden: true)
             self?.viewModel.fetch()
         }
     }
@@ -212,6 +216,7 @@ final class GistDetailViewController: UIViewController {
     private func shouldHideContent(isHidden: Bool) {
         cardView.isHidden = isHidden
         titleView.isHidden = isHidden
+        contentTextView.isHidden = isHidden
     }
 
     // MARK: - Actions

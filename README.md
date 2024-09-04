@@ -71,7 +71,7 @@ The application has three feature modules:
 - `NetworkKit`: unit tests are located in `NetworkKitTests`, the code coverage is 87%.
 - `GistKit`: unit tests are located in `GistKitTests`, the code coverage is 88%.
 - `FavoritesKit`: unit tests are located in `FavoritesKitTests`, the code coverage is 82%.
-- `GistDetailKit`: unit tests are located in `GistDetailKitTests`, the code coverage is 81%. Note: when running the `GistDetailViewModelTests`, you need to enable an alert for pasting content into the simulator.
+- `GistDetailKit`: unit tests are located in `GistDetailKitTests`, the code coverage is 80%. Note: when running the `GistDetailViewModelTests`, you need to enable an alert for pasting content into the simulator.
 
 ## Next steps
 

@@ -136,6 +136,7 @@ final class GistListViewController: UIViewController {
             guard let self = self else { return }
             self.loadingIndicator.isHidden = !isLoading
             isLoading ? self.loadingIndicator.startAnimating() : self.loadingIndicator.stopAnimating()
+            self.informationView.isHidden = true
 
             if !isLoading {
                 self.refreshControl.endRefreshing()
@@ -143,6 +144,7 @@ final class GistListViewController: UIViewController {
         }
 
         viewModel.shouldReloadData.bind { [weak self] isLoading in
+            self?.informationView.isHidden = true
             self?.tableView.reloadData()
         }
 

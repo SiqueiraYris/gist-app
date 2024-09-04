@@ -48,7 +48,7 @@ final class GistDetailViewModel: GistDetailViewModelProtocol {
     // MARK: - Methods
 
     func fetch() {
-        if (dataSource.content?.isEmpty ?? true) && (dataSource.imageData?.isEmpty ?? true) {
+        if (dataSource.content?.isEmpty ?? true) || (dataSource.imageData?.isEmpty ?? true) {
             isLoading.value = true
 
             service.downloadImage(from: dataSource.avatarURL ?? "") { [weak self] data in
