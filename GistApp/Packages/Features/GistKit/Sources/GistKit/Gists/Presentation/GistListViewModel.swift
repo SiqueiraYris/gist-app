@@ -70,6 +70,7 @@ final class GistListViewModel: GistListViewModelProtocol {
                     self.coordinator.showErrorAlert(
                         with: error.errorDescription ?? error.localizedDescription
                     ) { [weak self] in
+                        self?.lastFetchFailed = true
                         self?.retryLastFetch()
                     }
                 }

@@ -5,11 +5,17 @@ protocol GistDetailCoordinatorProtocol {
 }
 
 final class GistDetailCoordinator: GistDetailCoordinatorProtocol {
+    // MARK: - Properties
+
     private weak var navigator: UINavigationController?
 
+    // MARK: - Initializer
+    
     init(navigator: UINavigationController?) {
         self.navigator = navigator
     }
+
+    // MARK: - Methods
 
     func start(viewController: UIViewController) {
         navigator?.pushViewController(viewController, animated: true)

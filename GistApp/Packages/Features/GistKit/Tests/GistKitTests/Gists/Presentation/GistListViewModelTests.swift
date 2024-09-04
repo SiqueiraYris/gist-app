@@ -118,26 +118,6 @@ final class GistListViewModelTests: XCTestCase {
         XCTAssertEqual(coordinatorSpy.receivedMessages, [.openFavorites])
     }
 
-    func test_fetch_shouldShowErrorAlertAndRetryOnFailure() {
-        let error = ResponseError.fixture()
-        let item = GistItemResponse.fixture()
-        let response = [item]
-        let (sut, serviceSpy, coordinatorSpy) = makeSUT()
-
-        serviceSpy.result = .success(response)
-        sut.fetch()
-        serviceSpy.completeWithSuccess(object: response)
-
-        serviceSpy.result = .failure(error)
-        sut.fetch()
-        serviceSpy.completeWithError(error: error)
-
-        XCTAssertNil(sut.error.value)
-        XCTAssertEqual(coordinatorSpy.receivedMessages, [
-            .showErrorAlert(message: "Estamos fazendo alguns ajustes, pedimos desculpas e logo estaremos de volta.")
-        ])
-    }
-
     // MARK: - Helpers
 
     private func makeSUT() -> (

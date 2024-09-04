@@ -9,13 +9,19 @@ protocol GistFavoritesCoordinatorProtocol {
 }
 
 final class GistFavoritesCoordinator: GistFavoritesCoordinatorProtocol {
+    // MARK: - Properties
+    
     private weak var navigator: UINavigationController?
     private let router: RoutingHubProtocol
 
+    // MARK: - Initializer
+    
     init(navigator: UINavigationController?, router: RoutingHubProtocol) {
         self.navigator = navigator
         self.router = router
     }
+
+    // MARK: - Methods
 
     func start(viewController: UIViewController) {
         navigator?.pushViewController(viewController, animated: true)

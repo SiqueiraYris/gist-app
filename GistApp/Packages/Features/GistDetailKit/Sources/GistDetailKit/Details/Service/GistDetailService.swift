@@ -12,11 +12,17 @@ protocol GistDetailServiceProtocol {
 }
 
 final class GistDetailService: GistDetailServiceProtocol {
+    // MARK: - Properties
+    
     private let manager: NetworkManagerProtocol
 
+    // MARK: - Initializer
+    
     init(manager: NetworkManagerProtocol) {
         self.manager = manager
     }
+
+    // MARK: - Methods
 
     func fetch(
         _ route: GistDetailServiceRoute,

@@ -40,6 +40,8 @@ final class GistFavoritesViewModel: GistFavoritesViewModelProtocol {
         self.storage = storage
     }
 
+    // MARK: - Methods
+
     func fetch() {
         let result = storage.fetchAllGists()
 
